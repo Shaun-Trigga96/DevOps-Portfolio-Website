@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// We'll use lucide-react for modern, clean icons.
-// You'll need to install it: npm install lucide-react
 import {
   Briefcase,
   Mail,
@@ -15,57 +13,43 @@ import {
   Terminal,
   GitBranch,
   Database,
-  ShieldCheck,
   Zap,
   Layers,
   BarChart2,
-  Award // Added Award icon for Certifications
+  Award
 } from 'lucide-react';
 
-// FONT: Make sure to import "Inter" in your main index.html or CSS
-// <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-// And add 'font-inter' to your tailwind.config.js if you have one.
-// For this single file, we'll just apply it as a class.
-
-// =======================================================================
-// === YOUR PORTFOLIO DATA ===============================================
-// =======================================================================
-//
-// Fill this object with your personal information, CV details,
-// project descriptions, and image URLs.
-//
-// For images, upload them to Firebase Storage and get the public URL.
-//
-// =======================================================================
+// Import assets
+import heroImage from './assets/images/hero/Thabiso 1.jpg';
+import cvFile from './assets/documents/Thabiso Matsaba Resume.pdf';
+import cloudExplorerImg from './assets/images/projects/cloud_explorer.png';
+import pharmacyAppImg from './assets/images/projects/PharmacyApp.png';
+import googleCloudBadge from './assets/images/badges/google-cloud-engineer.png';
+import awsBadge from './assets/images/badges/aws-cloud-practitioner.png';
+import googleDigitalBadge from './assets/images/badges/google-digital-leader.png';
+import fortinetBadge from './assets/images/badges/fortinet-cybersecurity.png';
+import sapBadge from './assets/images/badges/sap-fico.png';
 
 const portfolioData = {
-  // --- Personal Info ---
   name: "Thabiso Matsaba",
   title: "Junior DevOps Engineer",
   bio: "Hands-on Junior DevOps Engineer skilled in building and managing scalable cloud infrastructure on GCP and AWS. Proven ability in CI/CD, Docker, and automation.",
-  // --- Contact Info ---
+  
   contact: {
     email: "thabisomatsaba96@gmail.com",
-    linkedin: "https://www.linkedin.com/in/thabiso-matsaba-b4289616b/", // <-- PLEASE UPDATE THIS
+    linkedin: "https://www.linkedin.com/in/thabiso-matsaba-b4289616b/",
     github: "https://github.com/Shaun-Trigga96",
   },
-  // --- URLs ---
-  // Upload your CV (Thabiso Matsaba Resume.pdf) to Firebase Storage and paste the link here
-  cvUrl: "src/assets/documents/Thabiso Matsaba Resume.pdf", // <-- UPLOAD AND PASTE URL
-  // Upload your hero image (Thabiso 1.jpg) and paste link here
-  // A 1:1 aspect ratio (square) image is recommended, e.g., 600x600
-  heroImage: "src/assets/images/hero/Thabiso 1.jpg", // <-- UPLOAD AND PASTE URL
+  
+  cvUrl: cvFile,
+  heroImage: heroImage,
 
-  // --- About Me Section ---
   about: {
     title: "About Me",
     description:
       "Hello! I'm Thabiso Matsaba, a Junior DevOps Engineer with hands-on experience in building and managing scalable cloud infrastructure on GCP and AWS. I have a proven ability to implement CI/CD pipelines, containerize applications with Docker, and automate deployments. With a strong foundation in software development (Python, Java) and certified in both Google Cloud and AWS, I'm passionate about bridging the gap between development and operations to build reliable, scalable systems.",
   },
 
-  // --- Skills Section ---
-  // Add/remove categories and items as needed.
-  // Icons are from lucide-react: https://lucide.dev/icons/
   skills: [
     {
       category: "DevOps & Cloud",
@@ -109,75 +93,60 @@ const portfolioData = {
     },
   ],
 
-// --- Certifications Section ---
-  // IMPORTANT: Download badge images from Credly and upload to Firebase Storage
-  // Steps to get badge images:
-  // 1. Go to each Credly badge URL
-  // 2. Click "Share" button
-  // 3. Click "Download" and select image size
-  // 4. Upload downloaded images to Firebase Storage
-  // 5. Replace badgeImage URLs below with your Firebase Storage URLs
   certifications: [
     {
       title: "Google Associate Cloud Engineer",
       issuer: "Google Cloud",
       url: "https://www.credly.com/earner/earned/badge/42949cd3-6798-4554-8aae-0dfb7f649d50",
-      badgeImage: "src/assets/images/badges/google-cloud-engineer.png" // <-- UPLOAD AND PASTE FIREBASE URL
+      badgeImage: googleCloudBadge
     },
     {
       title: "AWS Certified Cloud Practitioner",
       issuer: "Amazon Web Services",
       url: "https://www.credly.com/earner/earned/badge/50f682d2-1ec2-499e-8980-408be51fe7f2",
-      badgeImage: "src/assets/images/badges/aws-cloud-practitioner.png" // <-- UPLOAD AND PASTE FIREBASE URL
+      badgeImage: awsBadge
     },
     {
       title: "Google Cloud Digital Leader",
       issuer: "Google Cloud",
       url: "https://www.credly.com/earner/earned/badge/95e94846-ff37-430c-b128-165acf466228",
-      badgeImage: "src/assets/images/badges/google-digital-leader.png" // <-- UPLOAD AND PASTE FIREBASE URL
+      badgeImage: googleDigitalBadge
     },
     {
       title: "Fortinet Certified Associate - Cybersecurity",
       issuer: "Fortinet",
       url: "https://www.credly.com/earner/earned/badge/cbb9bcdc-b241-478b-9bed-9cd2a37ec1be",
-      badgeImage: "src/assets/images/badges/fortinet-cybersecurity.png" // <-- UPLOAD AND PASTE FIREBASE URL
+      badgeImage: fortinetBadge
     },
     {
       title: "SAP S/4HANA Financial Accounting (FICO)",
       issuer: "SAP",
       url: "",
-      badgeImage: "src/assets/images/badges/sap-fico.png" // <-- UPLOAD SAP LOGO AND PASTE FIREBASE URL
+      badgeImage: sapBadge
     }
   ],
 
-  // --- Projects Section ---
-  // Add your repository and project details here.
-  // Upload project images to Firebase Storage.
   projects: [
     {
       title: "Cloud Explorer - Mobile Learning App",
       description:
         "Architected a cross-platform mobile app (React Native) to teach GCP, AWS, and Azure concepts. Features a scalable GCP microservices backend and a Gemini API integration.",
-      // 600x400 image recommended
-      imageUrl: "src/assets/images/projects/cloud_explorer.png", // <-- UPLOAD cloud_explorer.png AND PASTE URL
+      imageUrl: cloudExplorerImg,
       tags: ["React Native", "GCP", "Kubernetes", "Terraform", "Docker", "Firebase", "Gemini API", "Cloud Build"],
       githubUrl: "https://github.com/Shaun-Trigga96/CloudExplorer",
-      demoUrl: "", // Optional: Link to a live demo
+      demoUrl: "",
     },
     {
       title: "PharmacyApp - Healthcare Management Solution",
       description:
         "Containerized a full-stack pharmacy app (Angular, Spring Boot) using Docker. Deployed on AWS EC2 with auto-scaling and load balancing for high availability.",
-      imageUrl: "src/assets/images/projects/PharmacyApp.png", // <-- UPLOAD PharmacyApp.png AND PASTE URL
+      imageUrl: pharmacyAppImg,
       tags: ["Docker", "AWS EC2", "CI/CD", "Nginx", "Spring Boot", "Angular", "MySQL"],
       githubUrl: "https://github.com/220296006/PharmacyApp",
-      demoUrl: "", // Optional
+      demoUrl: "",
     },
-    // Add more projects...
   ],
 
-  // --- Experience Section ---
-  // Add your work experience from your CV.
   experience: [
     {
       role: "Google Cloud Infrastructure Intern - C2 Operations",
@@ -197,21 +166,9 @@ const portfolioData = {
         "Applied Scrum methodologies to optimize development workflows, delivering five full-stack features ahead of schedule.",
       ],
     },
-    // Add more roles...
   ],
 };
 
-// =======================================================================
-// === REACT COMPONENTS ==================================================
-// =======================================================================
-//
-// Below are the React components that build the website.
-// You shouldn't need to edit these unless you want to
-// change the fundamental layout or style.
-//
-// =======================================================================
-
-// --- Reusable Section Component ---
 const Section = ({ id, title, children, className = "" }) => (
   <section id={id} className={`py-20 md:py-28 ${className}`}>
     <div className="container mx-auto px-6 md:px-12 max-w-6xl">
@@ -225,7 +182,6 @@ const Section = ({ id, title, children, className = "" }) => (
   </section>
 );
 
-// --- Header / Navigation ---
 const Header = ({ navLinks }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -282,7 +238,6 @@ const Header = ({ navLinks }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={`md:hidden transition-all duration-300 ease-in-out ${
           isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
@@ -301,13 +256,11 @@ const Header = ({ navLinks }) => {
   );
 };
 
-// --- Hero Section ---
 const Hero = () => {
   return (
     <section id="home" className="pt-32 pb-20 md:pt-48 md:pb-32 bg-gray-900 text-white">
       <div className="container mx-auto px-6 md:px-12 max-w-6xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-          {/* Text Content */}
           <div className="md:w-3/5 text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4">
               Hi, I'm <span className="text-cyan-300">{portfolioData.name}</span>
@@ -318,7 +271,6 @@ const Hero = () => {
             <p className="text-lg text-gray-400 max-w-xl mx-auto md:mx-0 mb-10">
               {portfolioData.bio}
             </p>
-            {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <a
                 href="#projects"
@@ -333,8 +285,7 @@ const Hero = () => {
               </a>
               <a
                 href={portfolioData.cvUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                download
                 className="inline-flex items-center justify-center gap-2 px-8 py-3 font-medium text-cyan-300 bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 transition-all duration-300 transform hover:scale-105"
               >
                 <Download className="w-5 h-5" />
@@ -342,7 +293,6 @@ const Hero = () => {
               </a>
             </div>
           </div>
-          {/* Hero Image */}
           <div className="md:w-2/5 flex justify-center">
             <img
               src={portfolioData.heroImage}
@@ -360,7 +310,6 @@ const Hero = () => {
   );
 };
 
-// --- About Section ---
 const About = () => (
   <Section id="about" title={portfolioData.about.title} className="bg-gray-800">
     <p className="text-lg md:text-xl text-center max-w-3xl mx-auto text-gray-300 leading-relaxed">
@@ -369,7 +318,6 @@ const About = () => (
   </Section>
 );
 
-// --- Skills Section ---
 const Skills = () => (
   <Section id="skills" title="Tools & Technologies">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -403,7 +351,6 @@ const Skills = () => (
   </Section>
 );
 
-// --- Certifications Section ---
 const Certifications = () => (
   <Section id="certifications" title="Certifications">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -450,8 +397,6 @@ const CertificationCard = ({ cert }) => (
   </a>
 );
 
-
-// --- Projects Section ---
 const Projects = () => (
   <Section id="projects" title="Projects" className="bg-gray-800">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -512,28 +457,22 @@ const ProjectCard = ({ project }) => (
   </div>
 );
 
-// --- Experience Section ---
 const Experience = () => (
   <Section id="experience" title="Work Experience">
     <div className="relative max-w-3xl mx-auto">
-      {/* The timeline line */}
       <div className="absolute left-4 md:left-1/2 top-0 h-full w-0.5 bg-gray-700"></div>
       
       {portfolioData.experience.map((job, index) => (
         <div key={index} className="relative mb-12 pl-12 md:pl-0">
           <div className="md:flex items-start">
-            {/* Timeline Dot */}
             <div className="absolute left-4 md:left-1/2 top-1 w-4 h-4 bg-cyan-300 rounded-full -ml-2 border-4 border-gray-900"></div>
             
-            {/* Left Side (Date) - for Desktop */}
             <div className={`md:w-1/2 md:pr-8 md:text-right ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
               <p className="text-sm font-medium text-gray-400 mb-1">{job.dates}</p>
             </div>
 
-            {/* Right Side (Content) - for Desktop */}
             <div className={`md:w-1/2 md:pl-8 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
               <div className="bg-gray-800 p-6 rounded-xl shadow-lg relative">
-                {/* Arrow */}
                 <div className={`hidden md:block absolute top-4 w-4 h-4 bg-gray-800 transform rotate-45 ${index % 2 === 0 ? '-left-2' : '-right-2'}`}></div>
                 
                 <h3 className="text-xl font-semibold text-white mb-1">{job.role}</h3>
@@ -552,7 +491,6 @@ const Experience = () => (
   </Section>
 );
 
-// --- Contact Section ---
 const Contact = () => (
   <Section id="contact" title="Get In Touch" className="bg-gray-800">
     <div className="text-center max-w-xl mx-auto">
@@ -568,7 +506,6 @@ const Contact = () => (
         Say Hello
       </a>
       
-      {/* Social links */}
       <div className="flex justify-center gap-8 mt-12">
         <a
           href={portfolioData.contact.github}
@@ -593,7 +530,6 @@ const Contact = () => (
   </Section>
 );
 
-// --- Footer ---
 const Footer = () => (
   <footer className="bg-gray-900 py-8">
     <div className="container mx-auto px-6 md:px-12 max-w-6xl text-center text-gray-500">
@@ -603,7 +539,6 @@ const Footer = () => (
   </footer>
 );
 
-// --- Main App Component ---
 function App() {
   const navLinks = [
     { id: "about", title: "About" },
