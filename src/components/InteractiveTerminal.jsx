@@ -1,4 +1,3 @@
-// src/components/InteractiveTerminal.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal } from 'lucide-react';
 
@@ -29,16 +28,16 @@ const InteractiveTerminal = ({ portfolioData }) => {
       output: [
         '',
         '📋 Available Commands:',
-        '  help                    - Show this help message',
-        '  clear                   - Clear the terminal',
-        '  about                   - Display information about Thabiso',
+        '  help                 - Show this help message',
+        '  clear                - Clear the terminal',
+        '  about                - Display information about Thabiso',
         '  skills [--cloud|--container|--cicd|--all]  - Show technical skills',
-        '  projects [--docker|--aws|--gcp|--all]      - List projects',
-        '  experience [--devops|--all]                - Show work experience',
-        '  certifications          - List certifications',
-        '  contact                 - Get contact information',
-        '  whoami                  - Display current user info',
-        '  resume                  - Download CV/Resume',
+        '  projects [--docker|--aws|--gcp|--all]    - List projects',
+        '  experience [--devops|--all]           - Show work experience',
+        '  certifications       - List certifications',
+        '  contact              - Get contact information',
+        '  whoami               - Display current user info',
+        '  resume               - Download CV/Resume',
         ''
       ]
     }),
@@ -200,16 +199,21 @@ const InteractiveTerminal = ({ portfolioData }) => {
     })
   };
 
+  /**
+   * FIX 2: Batched state updates for efficiency.
+   * Instead of calling setHistory multiple times in a loop, we build
+   * an array of new history items and call setHistory ONCE.
+   */
   const executeCommand = (input) => {
     const trimmed = input.trim();
     if (!trimmed) return;
 
-    // Add command to history
+    // Add command to command history (for arrow keys)
     setCommandHistory(prev => [...prev, trimmed]);
     setHistoryIndex(-1);
 
-    // Add command to terminal display
-    setHistory(prev => [...prev, { type: 'command', content: trimmed }]);
+    // This array will hold all new lines to be added to the display
+    const newHistory = [{ type: 'command', content: trimmed }];
 
     // Parse command and arguments
     const [cmd, ...args] = trimmed.toLowerCase().split(' ');
@@ -218,10 +222,10 @@ const InteractiveTerminal = ({ portfolioData }) => {
     if (commands[cmd]) {
       const result = commands[cmd](args);
       
-      // Add output to terminal
+      // Add all output lines to our newHistory array
       if (result.output && result.output.length > 0) {
         result.output.forEach(line => {
-          setHistory(prev => [...prev, { type: 'output', content: line }]);
+          newHistory.push({ type: 'output', content: line });
         });
       }
 
@@ -230,13 +234,14 @@ const InteractiveTerminal = ({ portfolioData }) => {
         result.action();
       }
     } else {
-      setHistory(prev => [
-        ...prev,
-        { type: 'error', content: `Command not found: ${cmd}` },
-        { type: 'output', content: 'Type "help" to see available commands' },
-        { type: 'output', content: '' }
-      ]);
+      // Add error lines to our newHistory array
+      newHistory.push({ type: 'error', content: `Command not found: ${cmd}` });
+      newHistory.push({ type: 'output', content: 'Type "help" to see available commands' });
+      newHistory.push({ type: 'output', content: '' });
     }
+
+    // Now, update the state just once with all the new lines
+    setHistory(prev => [...prev, ...newHistory]);
   };
 
   const handleSubmit = (e) => {
@@ -246,13 +251,13 @@ const InteractiveTerminal = ({ portfolioData }) => {
     setCurrentInput('');
   };
 
+  /**
+   * FIX 1: Removed 'Enter' key logic from handleKeyDown.
+   * This function now *only* handles arrow keys and Tab.
+   * The 'Enter' key is handled separately by handleSubmit.
+   */
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      e.stopPropagation();
-      executeCommand(currentInput);
-      setCurrentInput('');
-    } else if (e.key === 'ArrowUp') {
+    if (e.key === 'ArrowUp') {
       e.preventDefault();
       if (commandHistory.length > 0) {
         const newIndex = historyIndex === -1 
@@ -335,10 +340,16 @@ const InteractiveTerminal = ({ portfolioData }) => {
             type="text"
             value={currentInput}
             onChange={(e) => setCurrentInput(e.target.value)}
+            /**
+             * FIX 1 (continued): Updated onKeyDown prop.
+             * It now correctly calls handleSubmit for 'Enter' and
+             * handleKeyDown for all other special keys.
+             */
             onKeyDown={(e) => {
-              handleKeyDown(e);
               if (e.key === 'Enter') {
                 handleSubmit(e);
+              } else {
+                handleKeyDown(e);
               }
             }}
             className="flex-1 bg-transparent outline-none text-green-400 dark:text-green-500 caret-green-400 dark:caret-green-500"
