@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// App.jsx
+
 import {
   Briefcase,
   Mail,
@@ -12,13 +13,22 @@ import {
   Server,
   Terminal,
   GitBranch,
-  Database,
   Zap,
   Layers,
   BarChart2,
   Award,
-  ChevronDown
+  ChevronDown,
+  Sun,
+  Moon,
+  Database
 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+// Import our new hook and component
+import { useTheme } from './hooks/useTheme';
+import ThemeToggle from './components/ThemeToggle';
+
+import InteractiveTerminal from './components/InteractiveTerminal';
+
 
 // Import assets (KEEP YOUR EXISTING IMPORTS)
 import heroImage from './assets/images/hero/Thabiso 1.jpg';
@@ -33,6 +43,7 @@ import sapBadge from './assets/images/badges/sap-fico.png';
 import Fast_MoneyImg from './assets/images/projects/Fast_Money.png';
 import certifiedkubernetesadministratorBadge from './assets//images/badges/certified_kubernetes_administrator.png';
 import googleCloudDevOpsBadge from './assets/images/badges/google-cloud-devops-engineer.png';
+
 // KEEP YOUR EXISTING portfolioData OBJECT AS IS
 const portfolioData = {
   name: "Thabiso Matsaba",
@@ -113,25 +124,25 @@ const portfolioData = {
     {
       title: "Google Associate Cloud Engineer",
       issuer: "Google Cloud",
-      url: "https://www.credly.com/earner/earned/badge/42949cd3-6798-4554-8aae-0dfb7f649d50",
+      url: "https://www.credly.com/earner/earned/badge/50f682d2-1ec2-499e-8980-408be51fe7f2",
       badgeImage: googleCloudBadge
     },
     {
       title: "AWS Certified Cloud Practitioner",
       issuer: "Amazon Web Services",
-      url: "https://www.credly.com/earner/earned/badge/50f682d2-1ec2-499e-8980-408be51fe7f2",
+      url: "https://www.credly.com/earner/earned/badge/cbb9bcdc-b241-478b-9bed-9cd2a37ec1be",
       badgeImage: awsBadge
     },
     {
       title: "Google Cloud Digital Leader",
       issuer: "Google Cloud",
-      url: "https://www.credly.com/earner/earned/badge/95e94846-ff37-430c-b128-165acf466228",
+      url: "https://www.credly.com/earner/earned/badge/42949cd3-6798-4554-8aae-0dfb7f649d50",
       badgeImage: googleDigitalBadge
     },
     {
       title: "Fortinet Certified Associate - Cybersecurity",
       issuer: "Fortinet",
-      url: "https://www.credly.com/earner/earned/badge/cbb9bcdc-b241-478b-9bed-9cd2a37ec1be",
+      url: "https://www.credly.com/earner/earned/badge/95e94846-ff37-430c-b128-165acf466228",
       badgeImage: fortinetBadge
     },
     {
@@ -196,6 +207,7 @@ const portfolioData = {
 
 // Intersection Observer Hook for scroll animations
 const useScrollAnimation = () => {
+  // ... (Your existing hook code is fine, no changes needed)
   const [elements, setElements] = useState([]);
 
   useEffect(() => {
@@ -224,7 +236,7 @@ const Section = ({ id, title, children, className = "" }) => (
   <section id={id} className={`py-20 md:py-28 ${className}`}>
     <div className="container mx-auto px-6 md:px-12 max-w-6xl">
       {title && (
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-cyan-300 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-cyan-600 dark:text-cyan-300 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
           {title}
         </h2>
       )}
@@ -233,7 +245,8 @@ const Section = ({ id, title, children, className = "" }) => (
   </section>
 );
 
-const Header = ({ navLinks }) => {
+// Pass theme hook to Header
+const Header = ({ navLinks, themeHook }) => { 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -255,21 +268,23 @@ const Header = ({ navLinks }) => {
     <a
       href={href}
       onClick={(e) => handleLinkClick(e, href)}
-      className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-all duration-300 relative group"
+      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 relative group"
     >
       {children}
-      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-500 dark:bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
     </a>
   );
 
   return (
     <nav className={`fixed w-full z-50 top-0 transition-all duration-500 ${
-      scrolled ? 'bg-gray-900/95 backdrop-blur-lg shadow-xl' : 'bg-gray-900/80 backdrop-blur-md shadow-lg'
+      scrolled 
+        ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg dark:shadow-xl' 
+        : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg dark:shadow-lg'
     }`}>
       <div className="container mx-auto px-6 md:px-12 max-w-6xl">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="text-2xl font-bold text-white tracking-tighter hover:text-cyan-300 transition-colors duration-300">
+            <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="text-2xl font-bold text-gray-900 dark:text-white tracking-tighter hover:text-cyan-600 dark:hover:text-cyan-300 transition-colors duration-300">
               {portfolioData.name}
             </a>
           </div>
@@ -280,13 +295,17 @@ const Header = ({ navLinks }) => {
                   {link.title}
                 </NavLink>
               ))}
+              {/* Add the ThemeToggle here */}
+              <ThemeToggle useTheme={themeHook} /> 
             </div>
           </div>
-          <div className="-mr-2 flex md:hidden">
+          <div className="-mr-2 flex md:hidden items-center gap-4">
+            {/* Add the ThemeToggle for mobile here */}
+            <ThemeToggle useTheme={themeHook} /> 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               type="button"
-              className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-300"
+              className="bg-gray-100 dark:bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-300"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -304,7 +323,7 @@ const Header = ({ navLinks }) => {
       <div
         className={`md:hidden transition-all duration-500 ease-in-out ${
           isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        } overflow-hidden`}
+        } overflow-hidden bg-white dark:bg-gray-900`} // Add bg colors
         id="mobile-menu"
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -325,7 +344,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 bg-gradient-to-br from-gray-900 via-gray-900 to-cyan-900/20 text-white overflow-hidden">
+    <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 bg-gradient-to-br from-white via-white to-cyan-100/20 text-gray-900 dark:from-gray-900 dark:via-gray-900 dark:to-cyan-900/20 dark:text-white overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -336,14 +355,14 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="md:w-3/5 text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 animate-fade-in-up">
-              Hi, I'm <span className="text-cyan-300 bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent animate-gradient">
+              Hi, I'm <span className="text-cyan-600 dark:text-cyan-300 bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent animate-gradient">
                 {portfolioData.name}
               </span>
             </h1>
-            <p className="text-2xl md:text-3xl font-medium text-gray-300 mb-8 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+            <p className="text-2xl md:text-3xl font-medium text-gray-700 dark:text-gray-300 mb-8 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
               {portfolioData.title}
             </p>
-            <p className="text-lg text-gray-400 max-w-xl mx-auto md:mx-0 mb-10 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto md:mx-0 mb-10 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
               {portfolioData.bio}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-up" style={{animationDelay: '0.6s'}}>
@@ -361,7 +380,7 @@ const Hero = () => {
               <a
                 href={portfolioData.cvUrl}
                 download
-                className="group inline-flex items-center justify-center gap-2 px-8 py-3 font-medium text-cyan-300 bg-gray-800/50 backdrop-blur-sm border border-cyan-500/30 rounded-lg shadow-lg hover:bg-gray-700/50 hover:shadow-cyan-500/30 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-3 font-medium text-cyan-600 dark:text-cyan-300 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-cyan-500/30 rounded-lg shadow-lg hover:bg-gray-100/50 dark:hover:bg-gray-700/50 hover:shadow-cyan-500/30 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
               >
                 <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
                 Download CV
@@ -374,7 +393,7 @@ const Hero = () => {
               <img
                 src={portfolioData.heroImage}
                 alt={portfolioData.name}
-                className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full object-cover border-8 border-gray-800 shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
+                className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full object-cover border-8 border-white dark:border-gray-800 shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = 'https://placehold.co/600x600/1e293b/f1f5f9?text=Image+Error';
@@ -387,9 +406,10 @@ const Hero = () => {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer" onClick={handleScrollDown}>
-        <ChevronDown className="w-8 h-8 text-cyan-300" />
+        <ChevronDown className="w-8 h-8 text-cyan-600 dark:text-cyan-300" />
       </div>
 
+      {/* Styles (no changes needed) */}
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -427,8 +447,8 @@ const Hero = () => {
 };
 
 const About = () => (
-  <Section id="about" title={portfolioData.about.title} className="bg-gray-800">
-    <p className="text-lg md:text-xl text-center max-w-3xl mx-auto text-gray-300 leading-relaxed animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
+  <Section id="about" title={portfolioData.about.title} className="bg-gray-50 dark:bg-gray-800">
+    <p className="text-lg md:text-xl text-center max-w-3xl mx-auto text-gray-600 dark:text-gray-300 leading-relaxed animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
       {portfolioData.about.description}
     </p>
   </Section>
@@ -445,12 +465,12 @@ const Skills = () => {
           return (
             <div
               key={skillCategory.category}
-              className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg transform hover:scale-105 hover:shadow-cyan-500/20 hover:-translate-y-2 group"
+              className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 bg-gradient-to-br from-white to-gray-50 shadow-lg dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl dark:shadow-lg transform hover:scale-105 hover:shadow-cyan-500/20 dark:hover:shadow-cyan-500/20 hover:-translate-y-2 group"
               style={{transitionDelay: `${index * 100}ms`}}
             >
               <div className="flex items-center gap-4 mb-4">
-                <Icon className="w-8 h-8 text-cyan-300 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-                <h3 className="text-2xl font-semibold text-white group-hover:text-cyan-300 transition-colors duration-300">
+                <Icon className="w-8 h-8 text-cyan-600 dark:text-cyan-300 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">
                   {skillCategory.category}
                 </h3>
               </div>
@@ -458,7 +478,7 @@ const Skills = () => {
                 {skillCategory.items.map((item) => (
                   <span
                     key={item}
-                    className="bg-gray-700 text-cyan-200 px-3 py-1 rounded-full text-sm font-medium hover:bg-cyan-500 hover:text-white transition-all duration-300 cursor-default transform hover:scale-110"
+                    className="bg-gray-200 text-cyan-700 dark:bg-gray-700 dark:text-cyan-200 px-3 py-1 rounded-full text-sm font-medium hover:bg-cyan-500 hover:text-white dark:hover:bg-cyan-500 dark:hover:text-white transition-all duration-300 cursor-default transform hover:scale-110"
                   >
                     {item}
                   </span>
@@ -471,6 +491,26 @@ const Skills = () => {
     </Section>
   );
 };
+
+// Add this new section component after Skills or before Projects:
+const TerminalSection = () => {
+  useScrollAnimation();
+  
+  return (
+    <Section id="terminal" title="Try My Interactive Terminal" className="bg-gray-800">
+      <div className="text-center mb-8">
+        <p className="text-lg text-gray-300 mb-4">
+          Experience my skills in action! Type commands to explore my portfolio.
+        </p>
+        <p className="text-sm text-gray-400">
+          💡 Start with "help" to see available commands
+        </p>
+      </div>
+      <InteractiveTerminal portfolioData={portfolioData} />
+    </Section>
+  );
+};
+
 
 const Certifications = () => {
   useScrollAnimation();
@@ -491,7 +531,7 @@ const CertificationCard = ({ cert, index }) => (
     href={cert.url || '#'}
     target={cert.url ? "_blank" : "_self"}
     rel={cert.url ? "noopener noreferrer" : ""}
-    className={`animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg flex flex-col items-center text-center transform hover:scale-105 hover:shadow-cyan-500/20 hover:-translate-y-2 group ${
+    className={`animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 bg-gradient-to-br from-white to-gray-50 shadow-lg dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl dark:shadow-lg flex flex-col items-center text-center transform hover:scale-105 hover:shadow-cyan-500/20 dark:hover:shadow-cyan-500/20 hover:-translate-y-2 group ${
       cert.url ? '' : 'cursor-default'
     }`}
     style={{transitionDelay: `${index * 100}ms`}}
@@ -508,13 +548,13 @@ const CertificationCard = ({ cert, index }) => (
           e.target.nextSibling.style.display = 'block';
         }}
       />
-      <Award className="w-24 h-24 text-cyan-300 hidden" />
+      <Award className="w-24 h-24 text-cyan-600 dark:text-cyan-300 hidden" />
     </div>
     <div>
-      <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300">{cert.title}</h3>
-      <p className="text-gray-400 mb-2">{cert.issuer}</p>
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">{cert.title}</h3>
+      <p className="text-gray-500 dark:text-gray-400 mb-2">{cert.issuer}</p>
       {cert.url && (
-        <div className="inline-flex items-center gap-1 text-sm text-cyan-400 mt-1 group-hover:gap-2 transition-all duration-300">
+        <div className="inline-flex items-center gap-1 text-sm text-cyan-600 dark:text-cyan-400 mt-1 group-hover:gap-2 transition-all duration-300">
           View Credential <ExternalLink className="w-3 h-3" />
         </div>
       )}
@@ -526,7 +566,7 @@ const Projects = () => {
   useScrollAnimation();
   
   return (
-    <Section id="projects" title="Projects" className="bg-gray-800">
+    <Section id="projects" title="Projects" className="bg-gray-50 dark:bg-gray-800">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {portfolioData.projects.map((project, index) => (
           <ProjectCard key={project.title} project={project} index={index} />
@@ -538,7 +578,7 @@ const Projects = () => {
 
 const ProjectCard = ({ project, index }) => (
   <div 
-    className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg shadow-xl overflow-hidden flex flex-col transform hover:shadow-cyan-500/30 hover:-translate-y-2 hover:scale-105 group"
+    className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 bg-white dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-xl dark:shadow-xl overflow-hidden flex flex-col transform hover:shadow-cyan-500/30 dark:hover:shadow-cyan-500/30 hover:-translate-y-2 hover:scale-105 group"
     style={{transitionDelay: `${index * 150}ms`}}
   >
     <div className="relative h-48 overflow-hidden">
@@ -553,14 +593,14 @@ const ProjectCard = ({ project, index }) => (
         }}
       />
     </div>
-    <div className="p-6 flex flex-col flex-grow">
-      <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-cyan-300 transition-colors duration-300">{project.title}</h3>
-      <p className="text-gray-400 mb-4 flex-grow">{project.description}</p>
+    <div className="p-6 flex flex-col flex-grow bg-white dark:bg-transparent">
+      <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">{project.title}</h3>
+      <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">{project.description}</p>
       <div className="flex flex-wrap gap-2 mb-6">
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="bg-gray-700 text-cyan-200 px-2 py-0.5 rounded-full text-xs font-medium hover:bg-cyan-500 hover:text-white transition-all duration-300 cursor-default"
+            className="bg-gray-200 text-cyan-700 dark:bg-gray-700 dark:text-cyan-200 px-2 py-0.5 rounded-full text-xs font-medium hover:bg-cyan-500 hover:text-white dark:hover:bg-cyan-500 dark:hover:text-white transition-all duration-300 cursor-default"
           >
             {tag}
           </span>
@@ -571,7 +611,7 @@ const ProjectCard = ({ project, index }) => (
           href={project.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-gray-300 hover:text-cyan-300 transition-all duration-300 hover:gap-3 group/link"
+          className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-300 transition-all duration-300 hover:gap-3 group/link"
         >
           <Github className="w-5 h-5 group-hover/link:rotate-12 transition-transform duration-300" />
           Code
@@ -581,7 +621,7 @@ const ProjectCard = ({ project, index }) => (
             href={project.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-gray-300 hover:text-cyan-300 transition-all duration-300 hover:gap-3 group/link"
+            className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-300 transition-all duration-300 hover:gap-3 group/link"
           >
             <ExternalLink className="w-5 h-5 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform duration-300" />
             Live Demo
@@ -598,26 +638,31 @@ const Experience = () => {
   return (
     <Section id="experience" title="Work Experience">
       <div className="relative max-w-3xl mx-auto">
+        {/* Timeline line */}
         <div className="absolute left-4 md:left-1/2 top-0 h-full w-0.5 bg-gradient-to-b from-cyan-500 via-cyan-300 to-cyan-500"></div>
         
         {portfolioData.experience.map((job, index) => (
           <div key={index} className="relative mb-12 pl-12 md:pl-0 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700" style={{transitionDelay: `${index * 200}ms`}}>
             <div className="md:flex items-start">
-              <div className="absolute left-4 md:left-1/2 top-1 w-4 h-4 bg-cyan-300 rounded-full -ml-2 border-4 border-gray-900 animate-pulse shadow-lg shadow-cyan-500/50"></div>
+              {/* Dot */}
+              <div className="absolute left-4 md:left-1/2 top-1 w-4 h-4 bg-cyan-300 rounded-full -ml-2 border-4 border-white dark:border-gray-900 animate-pulse shadow-lg shadow-cyan-500/50"></div>
               
+              {/* Dates */}
               <div className={`md:w-1/2 md:pr-8 md:text-right ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
-                <p className="text-sm font-medium text-gray-400 mb-1">{job.dates}</p>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">{job.dates}</p>
               </div>
 
+              {/* Card */}
               <div className={`md:w-1/2 md:pl-8 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
-                <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg relative hover:shadow-cyan-500/20 transition-all duration-500 transform hover:scale-105 group">
-                  <div className={`hidden md:block absolute top-4 w-4 h-4 bg-gray-800 transform rotate-45 ${index % 2 === 0 ? '-left-2' : '-right-2'}`}></div>
+                <div className="bg-gradient-to-br from-white to-gray-50 shadow-lg dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl dark:shadow-lg relative hover:shadow-cyan-500/20 dark:hover:shadow-cyan-500/20 transition-all duration-500 transform hover:scale-105 group">
+                  {/* Triangle arrow */}
+                  <div className={`hidden md:block absolute top-4 w-4 h-4 bg-white dark:bg-gray-800 transform rotate-45 ${index % 2 === 0 ? '-left-2' : '-right-2'}`}></div>
                   
-                  <h3 className="text-xl font-semibold text-white mb-1 group-hover:text-cyan-300 transition-colors duration-300">{job.role}</h3>
-                  <p className="text-lg font-medium text-cyan-300 mb-3">{job.company}</p>
-                  <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">{job.role}</h3>
+                  <p className="text-lg font-medium text-cyan-600 dark:text-cyan-300 mb-3">{job.company}</p>
+                  <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
                     {job.description.map((point, i) => (
-                      <li key={i} className="hover:text-white transition-colors duration-300">{point}</li>
+                      <li key={i} className="hover:text-gray-900 dark:hover:text-white transition-colors duration-300">{point}</li>
                     ))}
                   </ul>
                 </div>
@@ -631,9 +676,9 @@ const Experience = () => {
 };
 
 const Contact = () => (
-  <Section id="contact" title="Get In Touch" className="bg-gray-800">
+  <Section id="contact" title="Get In Touch" className="bg-gray-50 dark:bg-gray-800">
     <div className="text-center max-w-xl mx-auto">
-      <p className="text-lg md:text-xl text-gray-300 mb-8 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
+      <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
         I'm always open to discussing new opportunities, projects, or just
         chatting about tech. Feel free to reach out!
       </p>
@@ -652,7 +697,7 @@ const Contact = () => (
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-          className="text-gray-400 hover:text-cyan-300 transition-all duration-300 transform hover:scale-125 hover:rotate-12"
+          className="text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-300 transition-all duration-300 transform hover:scale-125 hover:rotate-12"
         >
           <Github className="w-8 h-8" />
         </a>
@@ -661,7 +706,7 @@ const Contact = () => (
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
-          className="text-gray-400 hover:text-cyan-300 transition-all duration-300 transform hover:scale-125 hover:rotate-12"
+          className="text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-300 transition-all duration-300 transform hover:scale-125 hover:rotate-12"
         >
           <Linkedin className="w-8 h-8" />
         </a>
@@ -671,8 +716,8 @@ const Contact = () => (
 );
 
 const Footer = () => (
-  <footer className="bg-gray-900 py-8 border-t border-gray-800">
-    <div className="container mx-auto px-6 md:px-12 max-w-6xl text-center text-gray-500">
+  <footer className="bg-white dark:bg-gray-900 py-8 border-t border-gray-100 dark:border-gray-800">
+    <div className="container mx-auto px-6 md:px-12 max-w-6xl text-center text-gray-500 dark:text-gray-500">
       <p>&copy; {new Date().getFullYear()} {portfolioData.name}. All rights reserved.</p>
       <p className="text-sm mt-1">Built with React, Tailwind CSS, and Firebase Hosting.</p>
     </div>
@@ -680,11 +725,25 @@ const Footer = () => (
 );
 
 function App() {
+  // 1. Initialize the theme hook
+  const themeHook = useTheme(); 
   useScrollAnimation();
+
+  // ADD THIS HOOK
+  useEffect(() => {
+    // Force scroll to top on page load/refresh
+    window.scrollTo(0, 0);
+
+    // Optional: Tell the browser to let you handle scroll restoration
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+  }, []); // The empty array [] ensures this runs only once on mount
 
   const navLinks = [
     { id: "about", title: "About" },
     { id: "skills", title: "Skills" },
+    { id: "terminal", title: "Terminal" },
     { id: "certifications", title: "Certifications" },
     { id: "projects", title: "Projects" },
     { id: "experience", title: "Experience" },
@@ -692,12 +751,15 @@ function App() {
   ];
 
   return (
-    <div className="font-inter bg-gray-900 text-gray-200 selection:bg-cyan-300 selection:text-gray-900 overflow-x-hidden">
-      <Header navLinks={navLinks} />
+    // 2. Update the main div with light/dark classes
+    <div className="font-inter bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 selection:bg-cyan-300 selection:text-gray-900 overflow-x-hidden">
+      {/* 3. Pass the theme hook to the Header */}
+      <Header navLinks={navLinks} themeHook={themeHook} /> 
       <main>
         <Hero />
         <About />
         <Skills />
+        <TerminalSection />
         <Certifications />
         <Projects />
         <Experience />

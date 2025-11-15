@@ -1,3 +1,17 @@
+/* index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    /* Add this for smooth scrolling */
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    /* Add this to smoothly transition colors/backgrounds */
+    @apply transition-colors duration-300 ease-in-out;
+  }
+}
