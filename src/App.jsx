@@ -20,42 +20,41 @@ import {
   ChevronDown,
   Sun,
   Moon,
-  Database
-} from 'lucide-react';
-import { useState, useEffect } from 'react';
+  Database,
+} from "lucide-react";
+import { useState, useEffect } from "react";
 // Import our new hook and component
-import { useTheme } from './hooks/useTheme';
-import ThemeToggle from './components/ThemeToggle';
+import { useTheme } from "./hooks/useTheme";
+import ThemeToggle from "./components/ThemeToggle";
 
-import InteractiveTerminal from './components/InteractiveTerminal';
-
+import InteractiveTerminal from "./components/InteractiveTerminal";
 
 // Import assets (KEEP YOUR EXISTING IMPORTS)
-import heroImage from './assets/images/hero/Thabiso 1.jpg';
-import cvFile from './assets/documents/Thabiso Matsaba Resume.pdf';
-import cloudExplorerImg from './assets/images/projects/cloud_explorer.png';
-import pharmacyAppImg from './assets/images/projects/PharmacyApp.png';
-import googleCloudBadge from './assets/images/badges/google-cloud-engineer.png';
-import awsBadge from './assets/images/badges/aws-cloud-practitioner.png';
-import googleDigitalBadge from './assets/images/badges/google-digital-leader.png';
-import fortinetBadge from './assets/images/badges/fortinet-cybersecurity.png';
-import sapBadge from './assets/images/badges/sap-fico.png';
-import Fast_MoneyImg from './assets/images/projects/Fast_Money.png';
-import certifiedkubernetesadministratorBadge from './assets//images/badges/certified_kubernetes_administrator.png';
-import googleCloudDevOpsBadge from './assets/images/badges/google-cloud-devops-engineer.png';
+import heroImage from "./assets/images/hero/Thabiso 1.jpg";
+import cvFile from "./assets/documents/Thabiso Matsaba Resume.pdf";
+import cloudExplorerImg from "./assets/images/projects/cloud_explorer.png";
+import pharmacyAppImg from "./assets/images/projects/PharmacyApp.png";
+import googleCloudBadge from "./assets/images/badges/google-cloud-engineer.png";
+import awsBadge from "./assets/images/badges/aws-cloud-practitioner.png";
+import googleDigitalBadge from "./assets/images/badges/google-digital-leader.png";
+import fortinetBadge from "./assets/images/badges/fortinet-cybersecurity.png";
+import sapBadge from "./assets/images/badges/sap-fico.png";
+import Fast_MoneyImg from "./assets/images/projects/Fast_Money.png";
+import certifiedkubernetesadministratorBadge from "./assets//images/badges/certified_kubernetes_administrator.png";
+import googleCloudDevOpsBadge from "./assets/images/badges/google-cloud-devops-engineer.png";
 
 // KEEP YOUR EXISTING portfolioData OBJECT AS IS
 const portfolioData = {
   name: "Thabiso Matsaba",
   title: "Junior DevOps Engineer",
   bio: "Hands-on Junior DevOps Engineer skilled in building and managing scalable cloud infrastructure on GCP and AWS. Proven ability in CI/CD, Docker, and automation.",
-  
+
   contact: {
     email: "thabisomatsaba96@gmail.com",
     linkedin: "https://www.linkedin.com/in/thabiso-matsaba-b4289616b/",
     github: "https://github.com/Shaun-Trigga96",
   },
-  
+
   cvUrl: cvFile,
   heroImage: heroImage,
 
@@ -69,12 +68,29 @@ const portfolioData = {
     {
       category: "DevOps & Cloud",
       icon: Cloud,
-      items: ["GCP", "AWS", "Terraform", "Google Cloud Build", "GitHub Actions", "GKE", "Cloud Run", "EC2", "S3", "Lambda"],
+      items: [
+        "GCP",
+        "AWS",
+        "Terraform",
+        "Google Cloud Build",
+        "GitHub Actions",
+        "GKE",
+        "Cloud Run",
+        "EC2",
+        "S3",
+        "Lambda",
+      ],
     },
     {
       category: "Containerization & Orchestration",
       icon: Layers,
-      items: ["Kubernetes", "Docker", "Docker Compose", "Container Registry", "Microservices"],
+      items: [
+        "Kubernetes",
+        "Docker",
+        "Docker Compose",
+        "Container Registry",
+        "Microservices",
+      ],
     },
     {
       category: "CI/CD",
@@ -89,7 +105,13 @@ const portfolioData = {
     {
       category: "Monitoring & Logging",
       icon: BarChart2,
-      items: ["Google Cloud Monitoring", "Cloud Logging", "APM", "Log Analysis", "System Observability"],
+      items: [
+        "Google Cloud Monitoring",
+        "Cloud Logging",
+        "APM",
+        "Log Analysis",
+        "System Observability",
+      ],
     },
     {
       category: "Automation & Scripting",
@@ -104,53 +126,60 @@ const portfolioData = {
     {
       category: "Development Background",
       icon: Database,
-      items: ["Java", "Spring Boot", "RESTful APIs", "MySQL", "PostgreSQL", "MongoDB"],
+      items: [
+        "Java",
+        "Spring Boot",
+        "RESTful APIs",
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB",
+      ],
     },
   ],
 
   certifications: [
-       {
+    {
       title: "Professional Cloud DevOps Engineer Certification",
       issuer: "Google Cloud",
       url: "",
-      badgeImage: googleCloudDevOpsBadge
+      badgeImage: googleCloudDevOpsBadge,
     },
     {
       title: "Certified Kubernetes Administrator (CKA)",
       issuer: "Cloud Native Computing Foundation (CNCF)",
       url: "",
-      badgeImage: certifiedkubernetesadministratorBadge
+      badgeImage: certifiedkubernetesadministratorBadge,
     },
     {
       title: "Google Associate Cloud Engineer",
       issuer: "Google Cloud",
       url: "https://www.credly.com/earner/earned/badge/50f682d2-1ec2-499e-8980-408be51fe7f2",
-      badgeImage: googleCloudBadge
+      badgeImage: googleCloudBadge,
     },
     {
       title: "AWS Certified Cloud Practitioner",
       issuer: "Amazon Web Services",
       url: "https://www.credly.com/earner/earned/badge/cbb9bcdc-b241-478b-9bed-9cd2a37ec1be",
-      badgeImage: awsBadge
+      badgeImage: awsBadge,
     },
     {
       title: "Google Cloud Digital Leader",
       issuer: "Google Cloud",
       url: "https://www.credly.com/earner/earned/badge/42949cd3-6798-4554-8aae-0dfb7f649d50",
-      badgeImage: googleDigitalBadge
+      badgeImage: googleDigitalBadge,
     },
     {
       title: "Fortinet Certified Associate - Cybersecurity",
       issuer: "Fortinet",
       url: "https://www.credly.com/earner/earned/badge/95e94846-ff37-430c-b128-165acf466228",
-      badgeImage: fortinetBadge
+      badgeImage: fortinetBadge,
     },
     {
       title: "SAP S/4HANA Financial Accounting (FICO)",
       issuer: "SAP",
       url: "",
-      badgeImage: sapBadge
-    }
+      badgeImage: sapBadge,
+    },
   ],
 
   projects: [
@@ -159,7 +188,16 @@ const portfolioData = {
       description:
         "Architected a cross-platform mobile app (React Native) to teach GCP, AWS, and Azure concepts. Features a scalable GCP microservices backend and a Gemini API integration.",
       imageUrl: cloudExplorerImg,
-      tags: ["React Native", "GCP", "Kubernetes", "Terraform", "Docker", "Firebase", "Gemini API", "Cloud Build"],
+      tags: [
+        "React Native",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "Firebase",
+        "Gemini API",
+        "Cloud Build",
+      ],
       githubUrl: "https://github.com/Shaun-Trigga96/CloudExplorer",
       demoUrl: "",
     },
@@ -168,7 +206,15 @@ const portfolioData = {
       description:
         "Containerized a full-stack pharmacy app (Angular, Spring Boot) using Docker. Deployed on AWS EC2 with auto-scaling and load balancing for high availability.",
       imageUrl: pharmacyAppImg,
-      tags: ["Docker", "AWS EC2", "CI/CD", "Nginx", "Spring Boot", "Angular", "MySQL"],
+      tags: [
+        "Docker",
+        "AWS EC2",
+        "CI/CD",
+        "Nginx",
+        "Spring Boot",
+        "Angular",
+        "MySQL",
+      ],
       githubUrl: "https://github.com/220296006/PharmacyApp",
       demoUrl: "",
     },
@@ -177,7 +223,15 @@ const portfolioData = {
       description:
         "Built a secure banking application with Flask backend and Tkinter GUI. Features include user authentication with JWT, account management, investment calculators, and SMTP-based password recovery.",
       imageUrl: Fast_MoneyImg,
-      tags: ["Python", "Flask", "SQLAlchemy", "JWT", "Tkinter", "SMTP", "Authentication"],
+      tags: [
+        "Python",
+        "Flask",
+        "SQLAlchemy",
+        "JWT",
+        "Tkinter",
+        "SMTP",
+        "Authentication",
+      ],
       githubUrl: "https://github.com/220296006/banking-app-py-master",
       demoUrl: "",
     },
@@ -215,14 +269,14 @@ const useScrollAnimation = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
+            entry.target.classList.add("animate-in");
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
     );
 
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    const animatedElements = document.querySelectorAll(".animate-on-scroll");
     animatedElements.forEach((el) => observer.observe(el));
     setElements(animatedElements);
 
@@ -245,8 +299,9 @@ const Section = ({ id, title, children, className = "" }) => (
   </section>
 );
 
-// Pass theme hook to Header
-const Header = ({ navLinks, themeHook }) => { 
+// REPLACE your entire Header component with this one
+const Header = ({ navLinks, themeHook, activeSection }) => {
+  // <-- 1. Add activeSection prop
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -254,54 +309,79 @@ const Header = ({ navLinks, themeHook }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleLinkClick = (e, href) => {
     e.preventDefault();
-    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+    document.querySelector(href).scrollIntoView({ behavior: "smooth" });
     setIsMobileMenuOpen(false);
   };
 
-  const NavLink = ({ href, children }) => (
+  // 2. Update NavLink to accept 'isActive' and change styles
+  const NavLink = ({ href, children, isActive }) => (
     <a
       href={href}
       onClick={(e) => handleLinkClick(e, href)}
-      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 relative group"
+      className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 relative group 
+        ${
+          isActive
+            ? "text-cyan-600 dark:text-cyan-300" // <-- Active text color
+            : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+        }`}
     >
       {children}
-      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-500 dark:bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+      <span
+        className={`absolute bottom-0 left-0 h-0.5 bg-cyan-500 dark:bg-cyan-400 transition-all duration-300 
+        ${
+          isActive ? "w-full" : "w-0 group-hover:w-full"
+        } // <-- Active underline
+      `}
+      ></span>
     </a>
   );
 
   return (
-    <nav className={`fixed w-full z-50 top-0 transition-all duration-500 ${
-      scrolled 
-        ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg dark:shadow-xl' 
-        : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg dark:shadow-lg'
-    }`}>
+    <nav
+      className={`fixed w-full z-50 top-0 transition-all duration-500 ${
+        scrolled
+          ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg dark:shadow-xl"
+          : "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg dark:shadow-lg"
+      }`}
+    >
       <div className="container mx-auto px-6 md:px-12 max-w-6xl">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="text-2xl font-bold text-gray-900 dark:text-white tracking-tighter hover:text-cyan-600 dark:hover:text-cyan-300 transition-colors duration-300">
+            <a
+              href="#home"
+              onClick={(e) => handleLinkClick(e, "#home")}
+              className={`text-2xl font-bold text-gray-900 dark:text-white tracking-tighter hover:text-cyan-600 dark:hover:text-cyan-300 transition-colors duration-300 ${
+                activeSection === "home"
+                  ? "text-cyan-600 dark:text-cyan-300"
+                  : "text-gray-900 dark:text-white" // <-- Active for name
+              }`}
+            >
               {portfolioData.name}
             </a>
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navLinks.map((link) => (
-                <NavLink key={link.id} href={`#${link.id}`}>
+                // 3. Pass the 'isActive' prop
+                <NavLink
+                  key={link.id}
+                  href={`#${link.id}`}
+                  isActive={activeSection === link.id}
+                >
                   {link.title}
                 </NavLink>
               ))}
-              {/* Add the ThemeToggle here */}
-              <ThemeToggle useTheme={themeHook} /> 
+              <ThemeToggle useTheme={themeHook} />
             </div>
           </div>
           <div className="-mr-2 flex md:hidden items-center gap-4">
-            {/* Add the ThemeToggle for mobile here */}
-            <ThemeToggle useTheme={themeHook} /> 
+            <ThemeToggle useTheme={themeHook} />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               type="button"
@@ -311,9 +391,15 @@ const Header = ({ navLinks, themeHook }) => {
             >
               <span className="sr-only">Open main menu</span>
               {isMobileMenuOpen ? (
-                <X className="block h-6 w-6 rotate-90 transition-transform duration-300" aria-hidden="true" />
+                <X
+                  className="block h-6 w-6 rotate-90 transition-transform duration-300"
+                  aria-hidden="true"
+                />
               ) : (
-                <Menu className="block h-6 w-6 transition-transform duration-300" aria-hidden="true" />
+                <Menu
+                  className="block h-6 w-6 transition-transform duration-300"
+                  aria-hidden="true"
+                />
               )}
             </button>
           </div>
@@ -322,13 +408,18 @@ const Header = ({ navLinks, themeHook }) => {
 
       <div
         className={`md:hidden transition-all duration-500 ease-in-out ${
-          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        } overflow-hidden bg-white dark:bg-gray-900`} // Add bg colors
+          isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        } overflow-hidden bg-white dark:bg-gray-900`}
         id="mobile-menu"
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navLinks.map((link) => (
-            <NavLink key={link.id} href={`#${link.id}`}>
+            // 4. Also pass 'isActive' to mobile links
+            <NavLink
+              key={link.id}
+              href={`#${link.id}`}
+              isActive={activeSection === link.id}
+            >
               {link.title}
             </NavLink>
           ))}
@@ -340,37 +431,55 @@ const Header = ({ navLinks, themeHook }) => {
 
 const Hero = () => {
   const handleScrollDown = () => {
-    document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+    document.querySelector("#about").scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 bg-gradient-to-br from-white via-white to-cyan-100/20 text-gray-900 dark:from-gray-900 dark:via-gray-900 dark:to-cyan-900/20 dark:text-white overflow-hidden">
+    <section
+      id="home"
+      className="relative pt-32 pb-20 md:pt-48 md:pb-32 bg-gradient-to-br from-white via-white to-cyan-100/20 text-gray-900 dark:from-gray-900 dark:via-gray-900 dark:to-cyan-900/20 dark:text-white overflow-hidden"
+    >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
       </div>
 
       <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="md:w-3/5 text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 animate-fade-in-up">
-              Hi, I'm <span className="text-cyan-600 dark:text-cyan-300 bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent animate-gradient">
+              Hi, I'm{" "}
+              <span className="text-cyan-600 dark:text-cyan-300 bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent animate-gradient">
                 {portfolioData.name}
               </span>
             </h1>
-            <p className="text-2xl md:text-3xl font-medium text-gray-700 dark:text-gray-300 mb-8 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+            <p
+              className="text-2xl md:text-3xl font-medium text-gray-700 dark:text-gray-300 mb-8 animate-fade-in-up"
+              style={{ animationDelay: "0.2s" }}
+            >
               {portfolioData.title}
             </p>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto md:mx-0 mb-10 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+            <p
+              className="text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto md:mx-0 mb-10 animate-fade-in-up"
+              style={{ animationDelay: "0.4s" }}
+            >
               {portfolioData.bio}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-up" style={{animationDelay: '0.6s'}}>
+            <div
+              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-up"
+              style={{ animationDelay: "0.6s" }}
+            >
               <a
                 href="#projects"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' });
+                  document
+                    .querySelector("#projects")
+                    .scrollIntoView({ behavior: "smooth" });
                 }}
                 className="group inline-flex items-center justify-center gap-2 px-8 py-3 font-medium text-white bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
               >
@@ -387,7 +496,10 @@ const Hero = () => {
               </a>
             </div>
           </div>
-          <div className="md:w-2/5 flex justify-center animate-fade-in-up" style={{animationDelay: '0.8s'}}>
+          <div
+            className="md:w-2/5 flex justify-center animate-fade-in-up"
+            style={{ animationDelay: "0.8s" }}
+          >
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 animate-pulse"></div>
               <img
@@ -396,7 +508,8 @@ const Hero = () => {
                 className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full object-cover border-8 border-white dark:border-gray-800 shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = 'https://placehold.co/600x600/1e293b/f1f5f9?text=Image+Error';
+                  e.target.src =
+                    "https://placehold.co/600x600/1e293b/f1f5f9?text=Image+Error";
                 }}
               />
             </div>
@@ -405,7 +518,10 @@ const Hero = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer" onClick={handleScrollDown}>
+      <div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
+        onClick={handleScrollDown}
+      >
         <ChevronDown className="w-8 h-8 text-cyan-600 dark:text-cyan-300" />
       </div>
 
@@ -447,7 +563,11 @@ const Hero = () => {
 };
 
 const About = () => (
-  <Section id="about" title={portfolioData.about.title} className="bg-gray-50 dark:bg-gray-800">
+  <Section
+    id="about"
+    title={portfolioData.about.title}
+    className="bg-gray-50 dark:bg-gray-800"
+  >
     <p className="text-lg md:text-xl text-center max-w-3xl mx-auto text-gray-600 dark:text-gray-300 leading-relaxed animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
       {portfolioData.about.description}
     </p>
@@ -456,7 +576,7 @@ const About = () => (
 
 const Skills = () => {
   useScrollAnimation();
-  
+
   return (
     <Section id="skills" title="Tools & Technologies">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -466,7 +586,7 @@ const Skills = () => {
             <div
               key={skillCategory.category}
               className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 bg-gradient-to-br from-white to-gray-50 shadow-lg dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl dark:shadow-lg transform hover:scale-105 hover:shadow-cyan-500/20 dark:hover:shadow-cyan-500/20 hover:-translate-y-2 group"
-              style={{transitionDelay: `${index * 100}ms`}}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="flex items-center gap-4 mb-4">
                 <Icon className="w-8 h-8 text-cyan-600 dark:text-cyan-300 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
@@ -492,29 +612,9 @@ const Skills = () => {
   );
 };
 
-// Add this new section component after Skills or before Projects:
-const TerminalSection = () => {
-  useScrollAnimation();
-  
-  return (
-    <Section id="terminal" title="Try My Interactive Terminal" className="bg-gray-800">
-      <div className="text-center mb-8">
-        <p className="text-lg text-gray-300 mb-4">
-          Experience my skills in action! Type commands to explore my portfolio.
-        </p>
-        <p className="text-sm text-gray-400">
-          💡 Start with "help" to see available commands
-        </p>
-      </div>
-      <InteractiveTerminal portfolioData={portfolioData} />
-    </Section>
-  );
-};
-
-
 const Certifications = () => {
   useScrollAnimation();
-  
+
   return (
     <Section id="certifications" title="Certifications">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -528,13 +628,13 @@ const Certifications = () => {
 
 const CertificationCard = ({ cert, index }) => (
   <a
-    href={cert.url || '#'}
+    href={cert.url || "#"}
     target={cert.url ? "_blank" : "_self"}
     rel={cert.url ? "noopener noreferrer" : ""}
     className={`animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 bg-gradient-to-br from-white to-gray-50 shadow-lg dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl dark:shadow-lg flex flex-col items-center text-center transform hover:scale-105 hover:shadow-cyan-500/20 dark:hover:shadow-cyan-500/20 hover:-translate-y-2 group ${
-      cert.url ? '' : 'cursor-default'
+      cert.url ? "" : "cursor-default"
     }`}
-    style={{transitionDelay: `${index * 100}ms`}}
+    style={{ transitionDelay: `${index * 100}ms` }}
   >
     <div className="flex-shrink-0 mb-4 relative">
       <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -544,14 +644,16 @@ const CertificationCard = ({ cert, index }) => (
         className="w-24 h-24 object-contain relative z-10 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500"
         onError={(e) => {
           e.target.onerror = null;
-          e.target.style.display = 'none';
-          e.target.nextSibling.style.display = 'block';
+          e.target.style.display = "none";
+          e.target.nextSibling.style.display = "block";
         }}
       />
       <Award className="w-24 h-24 text-cyan-600 dark:text-cyan-300 hidden" />
     </div>
     <div>
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">{cert.title}</h3>
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">
+        {cert.title}
+      </h3>
       <p className="text-gray-500 dark:text-gray-400 mb-2">{cert.issuer}</p>
       {cert.url && (
         <div className="inline-flex items-center gap-1 text-sm text-cyan-600 dark:text-cyan-400 mt-1 group-hover:gap-2 transition-all duration-300">
@@ -564,9 +666,13 @@ const CertificationCard = ({ cert, index }) => (
 
 const Projects = () => {
   useScrollAnimation();
-  
+
   return (
-    <Section id="projects" title="Projects" className="bg-gray-50 dark:bg-gray-800">
+    <Section
+      id="projects"
+      title="Projects"
+      className="bg-gray-50 dark:bg-gray-800"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {portfolioData.projects.map((project, index) => (
           <ProjectCard key={project.title} project={project} index={index} />
@@ -577,9 +683,9 @@ const Projects = () => {
 };
 
 const ProjectCard = ({ project, index }) => (
-  <div 
+  <div
     className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 bg-white dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-xl dark:shadow-xl overflow-hidden flex flex-col transform hover:shadow-cyan-500/30 dark:hover:shadow-cyan-500/30 hover:-translate-y-2 hover:scale-105 group"
-    style={{transitionDelay: `${index * 150}ms`}}
+    style={{ transitionDelay: `${index * 150}ms` }}
   >
     <div className="relative h-48 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
@@ -589,13 +695,18 @@ const ProjectCard = ({ project, index }) => (
         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         onError={(e) => {
           e.target.onerror = null;
-          e.target.src = 'https://placehold.co/600x400/334155/e2e8f0?text=Image+Error';
+          e.target.src =
+            "https://placehold.co/600x400/334155/e2e8f0?text=Image+Error";
         }}
       />
     </div>
     <div className="p-6 flex flex-col flex-grow bg-white dark:bg-transparent">
-      <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">{project.title}</h3>
-      <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">{project.description}</p>
+      <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">
+        {project.title}
+      </h3>
+      <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">
+        {project.description}
+      </p>
       <div className="flex flex-wrap gap-2 mb-6">
         {project.tags.map((tag) => (
           <span
@@ -634,35 +745,62 @@ const ProjectCard = ({ project, index }) => (
 
 const Experience = () => {
   useScrollAnimation();
-  
+
   return (
     <Section id="experience" title="Work Experience">
       <div className="relative max-w-3xl mx-auto">
         {/* Timeline line */}
         <div className="absolute left-4 md:left-1/2 top-0 h-full w-0.5 bg-gradient-to-b from-cyan-500 via-cyan-300 to-cyan-500"></div>
-        
+
         {portfolioData.experience.map((job, index) => (
-          <div key={index} className="relative mb-12 pl-12 md:pl-0 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700" style={{transitionDelay: `${index * 200}ms`}}>
+          <div
+            key={index}
+            className="relative mb-12 pl-12 md:pl-0 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700"
+            style={{ transitionDelay: `${index * 200}ms` }}
+          >
             <div className="md:flex items-start">
               {/* Dot */}
               <div className="absolute left-4 md:left-1/2 top-1 w-4 h-4 bg-cyan-300 rounded-full -ml-2 border-4 border-white dark:border-gray-900 animate-pulse shadow-lg shadow-cyan-500/50"></div>
-              
+
               {/* Dates */}
-              <div className={`md:w-1/2 md:pr-8 md:text-right ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">{job.dates}</p>
+              <div
+                className={`md:w-1/2 md:pr-8 md:text-right ${
+                  index % 2 === 0 ? "md:order-1" : "md:order-2"
+                }`}
+              >
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                  {job.dates}
+                </p>
               </div>
 
               {/* Card */}
-              <div className={`md:w-1/2 md:pl-8 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
+              <div
+                className={`md:w-1/2 md:pl-8 ${
+                  index % 2 === 0 ? "md:order-2" : "md:order-1"
+                }`}
+              >
                 <div className="bg-gradient-to-br from-white to-gray-50 shadow-lg dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl dark:shadow-lg relative hover:shadow-cyan-500/20 dark:hover:shadow-cyan-500/20 transition-all duration-500 transform hover:scale-105 group">
                   {/* Triangle arrow */}
-                  <div className={`hidden md:block absolute top-4 w-4 h-4 bg-white dark:bg-gray-800 transform rotate-45 ${index % 2 === 0 ? '-left-2' : '-right-2'}`}></div>
-                  
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">{job.role}</h3>
-                  <p className="text-lg font-medium text-cyan-600 dark:text-cyan-300 mb-3">{job.company}</p>
+                  <div
+                    className={`hidden md:block absolute top-4 w-4 h-4 bg-white dark:bg-gray-800 transform rotate-45 ${
+                      index % 2 === 0 ? "-left-2" : "-right-2"
+                    }`}
+                  ></div>
+
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">
+                    {job.role}
+                  </h3>
+                  <p className="text-lg font-medium text-cyan-600 dark:text-cyan-300 mb-3">
+                    {job.company}
+                  </p>
                   <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
                     {job.description.map((point, i) => (
-                      <li key={i} className="hover:text-gray-900 dark:hover:text-white transition-colors duration-300">{point}</li>
+                      <li
+                        key={i}
+                        className="hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
+                      >
+                        {point}
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -675,8 +813,35 @@ const Experience = () => {
   );
 };
 
+// Add this new section component after Skills or before Projects:
+const TerminalSection = () => {
+  useScrollAnimation();
+
+  return (
+    <Section
+      id="terminal"
+      title="Try My Interactive Terminal"
+      className="bg-gray-800"
+    >
+      <div className="text-center mb-8">
+        <p className="text-lg text-gray-300 mb-4">
+          Experience my skills in action! Type commands to explore my portfolio.
+        </p>
+        <p className="text-sm text-gray-400">
+          💡 Start with "help" to see available commands
+        </p>
+      </div>
+      <InteractiveTerminal portfolioData={portfolioData} />
+    </Section>
+  );
+};
+
 const Contact = () => (
-  <Section id="contact" title="Get In Touch" className="bg-gray-50 dark:bg-gray-800">
+  <Section
+    id="contact"
+    title="Get In Touch"
+    className="bg-gray-50 dark:bg-gray-800"
+  >
     <div className="text-center max-w-xl mx-auto">
       <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
         I'm always open to discussing new opportunities, projects, or just
@@ -685,13 +850,16 @@ const Contact = () => (
       <a
         href={`mailto:${portfolioData.contact.email}`}
         className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 inline-flex items-center justify-center gap-2 px-10 py-4 text-lg font-medium text-white bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg shadow-lg hover:shadow-cyan-500/50 hover:scale-105 hover:-translate-y-1 group"
-        style={{transitionDelay: '0.2s'}}
+        style={{ transitionDelay: "0.2s" }}
       >
         <Mail className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
         Say Hello
       </a>
-      
-      <div className="flex justify-center gap-8 mt-12 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700" style={{transitionDelay: '0.4s'}}>
+
+      <div
+        className="flex justify-center gap-8 mt-12 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700"
+        style={{ transitionDelay: "0.4s" }}
+      >
         <a
           href={portfolioData.contact.github}
           target="_blank"
@@ -718,52 +886,100 @@ const Contact = () => (
 const Footer = () => (
   <footer className="bg-white dark:bg-gray-900 py-8 border-t border-gray-100 dark:border-gray-800">
     <div className="container mx-auto px-6 md:px-12 max-w-6xl text-center text-gray-500 dark:text-gray-500">
-      <p>&copy; {new Date().getFullYear()} {portfolioData.name}. All rights reserved.</p>
-      <p className="text-sm mt-1">Built with React, Tailwind CSS, and Firebase Hosting.</p>
+      <p>
+        &copy; {new Date().getFullYear()} {portfolioData.name}. All rights
+        reserved.
+      </p>
+      <p className="text-sm mt-1">
+        Built with React, Tailwind CSS, and Firebase Hosting.
+      </p>
     </div>
   </footer>
 );
 
+// REPLACE your entire App function with this one
 function App() {
   // 1. Initialize the theme hook
-  const themeHook = useTheme(); 
+  const themeHook = useTheme();
   useScrollAnimation();
 
-  // ADD THIS HOOK
+  // ADDED: New state to track the active section
+  const [activeSection, setActiveSection] = useState("home");
+
+  // ADDED: The useEffect hook for the IntersectionObserver
+  useEffect(() => {
+    // Select all sections that have an ID
+    const sections = document.querySelectorAll("section[id]");
+
+    // Options for the observer
+    const options = {
+      // This creates a "trigger area" 20% from the top of the viewport
+      // and 80% from the bottom. When a section enters this zone,
+      // it will be marked as "intersecting".
+      rootMargin: "-20% 0px -80% 0px",
+      threshold: 0,
+    };
+
+    const callback = (entries) => {
+      entries.forEach((entry) => {
+        // If the section is in our "trigger area"
+        if (entry.isIntersecting) {
+          // Set its ID as the active section
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    // Create the observer and watch the sections
+    const observer = new IntersectionObserver(callback, options);
+    sections.forEach((section) => observer.observe(section));
+
+    // Cleanup: stop observing when the component unmounts
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []); // Empty array means this runs only once on mount
+
+  // This is your existing hook to scroll to top
   useEffect(() => {
     // Force scroll to top on page load/refresh
     window.scrollTo(0, 0);
 
     // Optional: Tell the browser to let you handle scroll restoration
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
     }
   }, []); // The empty array [] ensures this runs only once on mount
 
   const navLinks = [
     { id: "about", title: "About" },
     { id: "skills", title: "Skills" },
-    { id: "terminal", title: "Terminal" },
     { id: "certifications", title: "Certifications" },
     { id: "projects", title: "Projects" },
     { id: "experience", title: "Experience" },
     { id: "contact", title: "Contact" },
+    { id: "terminal", title: "Terminal" },
   ];
 
   return (
     // 2. Update the main div with light/dark classes
     <div className="font-inter bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 selection:bg-cyan-300 selection:text-gray-900 overflow-x-hidden">
-      {/* 3. Pass the theme hook to the Header */}
-      <Header navLinks={navLinks} themeHook={themeHook} /> 
+      {/* 3. Pass the theme hook AND activeSection to the Header */}
+      <Header
+        navLinks={navLinks}
+        themeHook={themeHook}
+        activeSection={activeSection} // <-- PROP ADDED
+      />
+
       <main>
         <Hero />
         <About />
         <Skills />
-        <TerminalSection />
         <Certifications />
         <Projects />
         <Experience />
         <Contact />
+        <TerminalSection />
       </main>
       <Footer />
     </div>

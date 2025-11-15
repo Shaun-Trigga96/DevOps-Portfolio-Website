@@ -241,12 +241,18 @@ const InteractiveTerminal = ({ portfolioData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     executeCommand(currentInput);
     setCurrentInput('');
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'ArrowUp') {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      e.stopPropagation();
+      executeCommand(currentInput);
+      setCurrentInput('');
+    } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       if (commandHistory.length > 0) {
         const newIndex = historyIndex === -1 
