@@ -220,61 +220,112 @@ const portfolioData = {
     },
   ],
 
-  projects: [
-    {
-      title: "Cloud Explorer - Mobile Learning App",
-      description:
-        "Architected a cross-platform mobile app (React Native) to teach GCP, AWS, and Azure concepts. Features a scalable GCP microservices backend and a Gemini API integration.",
-      imageUrl: cloudExplorerImg,
-      tags: [
-        "React Native",
-        "GCP",
-        "Kubernetes",
-        "Terraform",
-        "Docker",
-        "Firebase",
-        "Gemini API",
-        "Cloud Build",
-      ],
-      githubUrl: "https://github.com/Shaun-Trigga96/CloudExplorer",
-      demoUrl: "",
-    },
-    {
-      title: "PharmacyApp - Healthcare Management Solution",
-      description:
-        "Containerized a full-stack pharmacy app (Angular, Spring Boot) using Docker. Deployed on AWS EC2 with auto-scaling and load balancing for high availability.",
-      imageUrl: pharmacyAppImg,
-      tags: [
-        "Docker",
-        "AWS EC2",
-        "CI/CD",
-        "Nginx",
-        "Spring Boot",
-        "Angular",
-        "MySQL",
-      ],
-      githubUrl: "https://github.com/220296006/PharmacyApp",
-      demoUrl: "",
-    },
-    {
-      title: "VP Bank App - Banking Application",
-      description:
-        "Built a secure banking application with Flask backend and Tkinter GUI. Features include user authentication with JWT, account management, investment calculators, and SMTP-based password recovery.",
-      imageUrl: Fast_MoneyImg,
-      tags: [
-        "Python",
-        "Flask",
-        "SQLAlchemy",
-        "JWT",
-        "Tkinter",
-        "SMTP",
-        "Authentication",
-      ],
-      githubUrl: "https://github.com/220296006/banking-app-py-master",
-      demoUrl: "",
-    },
-  ],
-
+projects: [
+  {
+    title: "Cloud Explorer - Mobile Learning App",
+    description:
+      "Cross-platform mobile application that gamifies cloud computing education through interactive modules, quizzes, and certification preparation for GCP, AWS, and Azure.",
+    imageUrl: cloudExplorerImg,
+    tags: [
+      "React Native",
+      "GCP",
+      "Kubernetes",
+      "Terraform",
+      "Docker",
+      "Firebase",
+      "Gemini API",
+      "Cloud Build",
+      "Node.js",
+      "Redux"
+    ],
+    detailedTech: [
+      "React Native", "Node.js", "Express.js", "Redux", 
+      "Firebase Auth", "Firestore", "GCE", "Cloud Storage",
+      "Cloud Run", "Cloud Build", "Gemini API", "TensorFlow"
+    ],
+    keyFeatures: [
+      "Interactive learning modules for GCP, AWS, and Azure certification paths",
+      "AI-powered quizzes and exams using Gemini API integration",
+      "Real-time progress tracking with Firebase Firestore",
+      "Containerized microservices backend on Google Cloud Run",
+      "Automated CI/CD pipeline with Google Cloud Build",
+      "Scalable architecture with auto-scaling on GCE"
+    ],
+    architecture: "Microservices architecture with React Native frontend, Node.js/Express backend deployed on Cloud Run, Firebase for authentication and real-time database, and AI integration via Gemini API for intelligent content generation.",
+    deployment: "Deployed on GCP: Cloud Run + Firestore + Cloud Build CI/CD",
+    githubUrl: "https://github.com/Shaun-Trigga96/CloudExplorer",
+    demoUrl: "",
+  },
+  {
+    title: "PharmacyApp - Healthcare Management Solution",
+    description:
+      "Enterprise-grade full-stack pharmacy management system streamlining operations from inventory control to prescription management, deployed on AWS with Docker containerization.",
+    imageUrl: pharmacyAppImg,
+    tags: [
+      "Docker",
+      "AWS EC2",
+      "CI/CD",
+      "Nginx",
+      "Spring Boot",
+      "Angular",
+      "MySQL",
+      "TypeScript",
+      "Bootstrap"
+    ],
+    detailedTech: [
+      "Java 19", "Spring Boot", "Spring JDBC", "MySQL", 
+      "Angular", "TypeScript", "Bootstrap", "Docker", 
+      "AWS EC2", "Nginx", "Lombok"
+    ],
+    keyFeatures: [
+      "Multi-role user management (User, Manager, Admin, SysAdmin)",
+      "Two-factor authentication with email verification tokens",
+      "Comprehensive inventory management with real-time tracking",
+      "Prescription management system with medication association",
+      "Invoice generation and customer purchase tracking",
+      "Secure password recovery with verification links",
+      "Dockerized deployment for consistent environments"
+    ],
+    architecture: "Full-stack monolithic application with Spring Boot RESTful backend, Angular SPA frontend, MySQL database, containerized with Docker and deployed on AWS EC2 with Nginx reverse proxy for load balancing.",
+    deployment: "AWS EC2 with Docker containers + Nginx load balancer",
+    githubUrl: "https://github.com/220296006/PharmacyApp",
+    demoUrl: "",
+  },
+  {
+    title: "VP Bank App - Secure Banking Platform",
+    description:
+      "Desktop banking application featuring JWT-based authentication, comprehensive account management, investment calculators, and secure SMTP-based password recovery system.",
+    imageUrl: Fast_MoneyImg,
+    tags: [
+      "Python",
+      "Flask",
+      "SQLAlchemy",
+      "JWT",
+      "Tkinter",
+      "SMTP",
+      "Authentication",
+      "SQL"
+    ],
+    detailedTech: [
+      "Python 3", "Flask", "SQLAlchemy", "JWT", 
+      "Tkinter", "SMTP", "SQL", "Encryption"
+    ],
+    keyFeatures: [
+      "Secure user registration and JWT-based authentication",
+      "Real-time account balance viewing and transaction history",
+      "Deposit and withdrawal transaction processing",
+      "Investment calculators (bond/home loan calculations)",
+      "Detailed transaction statement generation",
+      "SMTP-based password recovery via email",
+      "Encrypted password storage for enhanced security",
+      "Custom-styled Tkinter GUI for intuitive user experience"
+    ],
+    architecture: "Desktop application built with Flask backend, SQLAlchemy ORM for database management, JWT tokens for stateless authentication, and Tkinter for cross-platform GUI with custom styling.",
+    deployment: "Standalone desktop application (Windows/Mac/Linux compatible)",
+    githubUrl: "https://github.com/220296006/banking-app-py-master",
+    demoUrl: "",
+  },
+],
   experience: [
     {
       role: "Google Cloud Infrastructure Intern - C2 Operations",
@@ -316,10 +367,14 @@ const useScrollAnimation = () => {
 
     const animatedElements = document.querySelectorAll(".animate-on-scroll");
     animatedElements.forEach((el) => observer.observe(el));
-    setElements(animatedElements);
+    // Capture the observed elements in a local array for cleanup to avoid
+    // referencing the state variable inside the effect cleanup (prevents lint warning).
+    const observedElements = Array.from(animatedElements);
+    setElements(observedElements);
 
     return () => {
-      elements.forEach((el) => observer.unobserve(el));
+      observedElements.forEach((el) => observer.unobserve(el));
+      observer.disconnect();
     };
   }, []);
 };
@@ -1322,7 +1377,7 @@ const Certifications = () => {
 
 // --- START OF FIXED PROJECTS SECTION ---
 
-// 1. Internal helper for the Github Icon (Guaranteed to work)
+// 1. Internal helper for the Github Icon
 const ProjectGithubIcon = ({ className }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
@@ -1339,100 +1394,154 @@ const ProjectGithubIcon = ({ className }) => (
   </svg>
 );
 
-// 2. The Project Card Component
-const ProjectCard = ({ project, index }) => (
-  <div
-    className="group relative flex flex-col h-full animate-on-scroll opacity-0 translate-y-8 transition-all duration-700"
-    style={{ transitionDelay: `${index * 150}ms` }}
-  >
-    {/* Card Container */}
-    <div className="relative flex-grow bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden shadow-sm dark:shadow-none hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 group-hover:-translate-y-2 flex flex-col">
-      
-      {/* Image Section */}
-      <div className="relative h-56 flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700">
-        <img
-          src={project.imageUrl}
-          alt={project.title}
-          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = "https://placehold.co/600x400/1e293b/cbd5e1?text=System+Image";
-          }}
-        />
-        {/* Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-60"></div>
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-0 group-hover:opacity-20 transition-opacity duration-500 mix-blend-overlay"></div>
-        <div className="absolute top-4 right-4 px-3 py-1 bg-gray-900/80 backdrop-blur-md border border-gray-700 rounded-full text-xs font-bold text-cyan-400 flex items-center gap-2 z-10">
-          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-          ACTIVE
+// 2. The Project Card Component with Details Overlay
+const ProjectCard = ({ project, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="group relative flex flex-col h-full animate-on-scroll opacity-0 translate-y-8 transition-all duration-700"
+      style={{ transitionDelay: `${index * 150}ms` }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Card Container */}
+      <div className="relative flex-grow bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden shadow-sm dark:shadow-none hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 group-hover:-translate-y-2 flex flex-col">
+        
+        {/* Image Section */}
+        <div className="relative h-64 flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700">
+          <img
+            src={project.imageUrl}
+            alt={project.title}
+            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "https://placehold.co/600x400/1e293b/cbd5e1?text=System+Image";
+            }}
+          />
+          
+          {/* --- HOVER OVERLAY (The HUD) --- */}
+          <div className={`absolute inset-0 bg-gray-900/95 backdrop-blur-sm transition-all duration-300 ease-in-out flex flex-col ${
+            isHovered ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}>
+            <div className="h-full p-5 overflow-y-auto custom-scrollbar">
+              {/* Overlay Header */}
+              <div className="mb-4 pb-2 border-b border-gray-700 flex justify-between items-center">
+                <span className="text-xs font-mono text-cyan-400">./system_specs</span>
+                <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></div>
+              </div>
+
+              {/* 1. Tech Stack Grid */}
+              <div className="mb-4">
+                <h5 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Technology Stack</h5>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.detailedTech && project.detailedTech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-1 text-[10px] font-mono font-medium rounded bg-cyan-900/30 text-cyan-300 border border-cyan-500/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* 2. Key Features List */}
+              <div className="mb-4">
+                <h5 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Key Features</h5>
+                <ul className="space-y-1.5">
+                  {project.keyFeatures && project.keyFeatures.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2 text-xs text-gray-300">
+                      <span className="text-purple-400 mt-0.5">▹</span>
+                      <span className="leading-tight">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* 3. Architecture/Deployment */}
+              {project.architecture && (
+                <div className="mt-auto pt-2">
+                   <h5 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Architecture</h5>
+                   <p className="text-xs text-gray-300 font-mono">{project.architecture}</p>
+                </div>
+              )}
+            </div>
+            
+            {/* Bottom Gradient Fade for scroll indication */}
+            <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none"></div>
+          </div>
+          
+          {/* Active Badge (Visible when NOT hovered) */}
+          <div className={`absolute top-4 right-4 px-3 py-1 bg-gray-900/80 backdrop-blur-md border border-gray-700 rounded-full text-xs font-bold text-cyan-400 flex items-center gap-2 z-10 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            ACTIVE
+          </div>
         </div>
-      </div>
 
-      {/* Content Section */}
-      <div className="p-6 flex flex-col flex-grow relative h-full">
-        {/* Decorative Connector */}
-        <div className="absolute -top-3 left-8 w-6 h-6 bg-white dark:bg-gray-800 rotate-45 border-t border-l border-gray-200 dark:border-gray-700 z-10"></div>
+        {/* Content Section (Visible below image) */}
+        <div className="p-6 flex flex-col flex-grow relative h-full bg-white dark:bg-gray-800">
+          <div className="absolute -top-3 left-8 w-6 h-6 bg-white dark:bg-gray-800 rotate-45 border-t border-l border-gray-200 dark:border-gray-700 z-10"></div>
 
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-          {project.title}
-        </h3>
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+            {project.title}
+          </h3>
 
-        <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed line-clamp-3">
-          {project.description}
-        </p>
+          <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed line-clamp-3">
+            {project.description}
+          </p>
 
-        {/* --- TOOLS / TAGS SECTION --- */}
-        <div className="flex flex-wrap gap-2 mb-8 mt-auto">
-          {project.tags && project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-2.5 py-1 text-[10px] uppercase font-bold tracking-wider rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+          {/* Tags Section */}
+          <div className="flex flex-wrap gap-2 mb-8 mt-auto">
+            {project.tags && project.tags.slice(0, 4).map((tag) => (
+              <span
+                key={tag}
+                className="px-2.5 py-1 text-[10px] uppercase font-bold tracking-wider rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
-        {/* --- LINKS SECTION --- */}
-        <div className="flex items-center gap-4 pt-6 border-t border-gray-100 dark:border-gray-700/50">
-          {/* GITHUB LINK */}
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-white font-semibold text-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors group/btn"
-          >
-            <ProjectGithubIcon className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
-            Source Code
-          </a>
-
-          {/* DEMO LINK */}
-          {project.demoUrl ? (
+          {/* Links Section */}
+          <div className="flex items-center gap-4 pt-6 border-t border-gray-100 dark:border-gray-700/50">
             <a
-              href={project.demoUrl}
+              href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold text-sm shadow-lg hover:shadow-cyan-500/25 hover:brightness-110 transition-all group/btn"
+              className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-white font-semibold text-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors group/btn"
             >
-              Live Demo
-              <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+              <ProjectGithubIcon className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
+              Source Code
             </a>
-          ) : (
-            <button
-              disabled
-              className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 font-semibold text-sm cursor-not-allowed opacity-60"
-            >
-              Internal / Offline
-            </button>
-          )}
-        </div>
-      </div>
 
-      {/* Hover Border Glow */}
-      <div className="absolute inset-0 border-2 border-transparent group-hover:border-cyan-500/20 dark:group-hover:border-cyan-500/40 rounded-2xl pointer-events-none transition-colors duration-500"></div>
+            {project.demoUrl ? (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold text-sm shadow-lg hover:shadow-cyan-500/25 hover:brightness-110 transition-all group/btn"
+              >
+                Live Demo
+                <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+              </a>
+            ) : (
+              <button
+                disabled
+                className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 font-semibold text-sm cursor-not-allowed opacity-60 border border-dashed border-gray-300 dark:border-gray-700"
+              >
+                Internal / Offline
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Hover Border Glow */}
+        <div className="absolute inset-0 border-2 border-transparent group-hover:border-cyan-500/20 dark:group-hover:border-cyan-500/40 rounded-2xl pointer-events-none transition-colors duration-500"></div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // 3. The Main Projects Section
 const Projects = () => {
