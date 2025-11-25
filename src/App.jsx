@@ -351,8 +351,6 @@ projects: [
 // Intersection Observer Hook for scroll animations
 const useScrollAnimation = () => {
   // ... (Your existing hook code is fine, no changes needed)
-  const [elements, setElements] = useState([]);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -370,7 +368,6 @@ const useScrollAnimation = () => {
     // Capture the observed elements in a local array for cleanup to avoid
     // referencing the state variable inside the effect cleanup (prevents lint warning).
     const observedElements = Array.from(animatedElements);
-    setElements(observedElements);
 
     return () => {
       observedElements.forEach((el) => observer.unobserve(el));
