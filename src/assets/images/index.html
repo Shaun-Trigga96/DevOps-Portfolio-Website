@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps LinkedIn Banner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 1600px;
+        }
+
+        .banner-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .banner {
+            width: 1584px;
+            height: 396px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        /* Cyber grid background */
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.15;
+            background-image: 
+                linear-gradient(rgba(6, 182, 212, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.3) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Glowing orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: #06b6d4;
+            top: -200px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: #a855f7;
+            bottom: -150px;
+            right: 200px;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: #f43f5e;
+            top: -100px;
+            right: -50px;
+        }
+
+        /* --- LAYOUT: LEFT SIDE SDLC --- */
+        .infinity-container {
+            position: absolute;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 450px; /* Slightly wider to accommodate icons */
+            height: 300px;
+            z-index: 1;
+        }
+
+        .flow-path {
+            stroke-dasharray: 20, 10;
+            animation: flow 4s linear infinite;
+        }
+
+        @keyframes flow {
+            from { stroke-dashoffset: 400; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* DevOps icons - Smaller and more frequent */
+        .icon-circle {
+            position: absolute;
+            width: 40px; /* Smaller size for more icons */
+            height: 40px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(6, 182, 212, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+            z-index: 5;
+        }
+
+        .icon-circle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* --- LAYOUT: CENTER TEXT --- */
+        .text-content {
+            position: absolute;
+            left: 60%; 
+            top: 35%; 
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            width: 800px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 20px;
+            color: #06b6d4;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #06b6d4;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .pulse-dot::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #06b6d4;
+            border-radius: 50%;
+            animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes ping {
+            75%, 100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #06b6d4 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #94a3b8;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        /* Circuit lines */
+        .circuit-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+            opacity: 0.3;
+        }
+
+        .circuit-1 {
+            width: 300px;
+            top: 60px;
+            left: 20%;
+            animation: circuit-pulse 3s ease-in-out infinite;
+        }
+
+        .circuit-2 {
+            width: 250px;
+            bottom: 80px;
+            left: 30%;
+            animation: circuit-pulse 3s ease-in-out infinite 1s;
+        }
+
+        @keyframes circuit-pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Canvas */
+        #downloadCanvas {
+            display: none;
+        }
+
+        /* Buttons */
+        .button-group {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 32px;
+            background: #06b6d4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn:hover {
+            background: #0891b2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(6, 182, 212, 0.5);
+        }
+
+        .btn-secondary {
+            background: #6366f1;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: #4f46e5;
+            box-shadow: 0 6px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        .info {
+            margin-top: 20px;
+            color: #64748b;
+            font-size: 14px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .success-message {
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 8px;
+            color: #22c55e;
+            font-size: 14px;
+            display: none;
+        }
+
+        /* --- LAYOUT: BOTTOM BADGES --- */
+        .bottom-badges {
+            position: absolute;
+            left: 60%;
+            bottom: 50px;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: row; 
+            gap: 20px; 
+            z-index: 20; 
+        }
+
+        .badge-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            background: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 14px;
+            width: 240px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
+            transition: transform 0.3s;
+        }
+
+        .badge-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .badge-text-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.3;
+        }
+
+        .badge-label {
+            font-size: 12px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .badge-value {
+            font-size: 20px; 
+            color: white;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        @media (max-width: 1600px) {
+            .banner {
+                width: 100%;
+                max-width: 1584px;
+                height: auto;
+                aspect-ratio: 1584 / 396;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="banner-wrapper">
+            <div class="banner" id="banner">
+                <div class="grid-bg"></div>
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+                <div class="circuit-line circuit-1"></div>
+                <div class="circuit-line circuit-2"></div>
+
+                <div class="infinity-container">
+                    <svg viewBox="0 0 450 300" style="width: 100%; height: 100%;">
+                        <defs>
+                            <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#c084fc;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <path
+                            d="M225,150 C225,150 150,150 150,100 C150,50 225,50 225,150 C225,250 300,250 300,200 C300,150 225,150 225,150 C225,150 150,150 150,200 C150,250 225,250 225,150 C225,50 300,50 300,100 C300,150 225,150 225,150"
+                            fill="none"
+                            stroke="rgba(100, 116, 139, 0.3)"
+                            stroke-width="12"
+                            stroke-linecap="round"
+                        />
+
+                        <path
+                            class="flow-path"
+                            d="M225,150 C225,150 150,150 150,100 C150,50 225,50 225,150 C225,250 300,250 300,200 C300,150 225,150 225,150 C225,150 150,150 150,200 C150,250 225,250 225,150 C225,50 300,50 300,100 C300,150 225,150 225,150"
+                            fill="none"
+                            stroke="url(#neonGradient)"
+                            stroke-width="4"
+                            stroke-linecap="round"
+                            filter="url(#glow)"
+                        />
+                    </svg>
+
+                    <div class="icon-circle" style="top: 20%; left: 18%;" title="Plan">
+                        <svg fill="none" stroke="#94a3b8" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </div>
+                    <div class="icon-circle" style="top: 50%; left: 8%;" title="Code">
+                        <svg fill="none" stroke="#06b6d4" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <div class="icon-circle" style="top: 80%; left: 18%;" title="Build">
+                        <svg fill="none" stroke="#94a3b8" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <div class="icon-circle" style="top: 50%; left: 45%;" title="Test">
+                        <svg fill="none" stroke="#a855f7" stroke-width="2" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-2.24-4.052-2.5-4.5a3.65 3.65 0 0 0 7 0c-.26.448-1.428 2.357-2.5 4.5-.5 1-1 1.62-1 3a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg>
+                    </div>
+                    <div class="icon-circle" style="top: 20%; right: 18%;" title="Release">
+                        <svg fill="none" stroke="#94a3b8" stroke-width="2" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
+                    <div class="icon-circle" style="top: 50%; right: 8%;" title="Deploy">
+                        <svg fill="none" stroke="#ec4899" stroke-width="2" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+                    </div>
+                    <div class="icon-circle" style="top: 80%; right: 18%;" title="Operate">
+                        <svg fill="none" stroke="#94a3b8" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <div class="icon-circle" style="top: 10%; left: 45%;" title="Monitor">
+                        <svg fill="none" stroke="#22c55e" stroke-width="2" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    </div>
+                </div>
+
+                <div class="text-content">
+                    <div class="badge">
+                        <div class="pulse-dot"></div>
+                        THABISO MATSABA
+                    </div>
+                    <h1>
+                        JUNIOR DEVOPS<br>
+                        <span class="gradient-text">ENGINEER</span>
+                    </h1>
+                    <div class="tagline">
+                        Cloud · CI/CD · Security · IaC 
+                    </div>
+                </div>
+
+                <div class="bottom-badges">
+                    <div class="badge-box" style="border-color: rgba(6, 182, 212, 0.3);">
+                        <svg width="32" height="32" fill="none" stroke="#06b6d4" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+                        </svg>
+                        <div class="badge-text-group">
+                            <div class="badge-label" style="color: #06b6d4;">Cloud</div>
+                            <div class="badge-value">Native</div>
+                        </div>
+                    </div>
+                    
+                    <div class="badge-box" style="border-color: rgba(168, 85, 247, 0.3);">
+                        <svg width="32" height="32" fill="none" stroke="#a855f7" stroke-width="2" viewBox="0 0 24 24">
+                            <rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/>
+                        </svg>
+                        <div class="badge-text-group">
+                            <div class="badge-label" style="color: #a855f7;">Pipelines</div>
+                            <div class="badge-value">Automated</div>
+                        </div>
+                    </div>
+
+                    <div class="badge-box" style="border-color: rgba(236, 72, 153, 0.3);">
+                        <svg width="32" height="32" fill="none" stroke="#ec4899" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                        </svg>
+                        <div class="badge-text-group">
+                            <div class="badge-label" style="color: #ec4899;">Security</div>
+                            <div class="badge-value">First</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <canvas id="downloadCanvas" width="1584" height="396"></canvas>
+
+        <div class="button-group">
+            <button class="btn" onclick="downloadAsImage()">
+                📥 Download as PNG
+            </button>
+            <button class="btn btn-secondary" onclick="copyToClipboard()">
+                📋 Copy to Clipboard
+            </button>
+        </div>
+
+        <div class="success-message" id="successMessage"></div>
+        
+        <div class="info">
+            <strong>LinkedIn Banner Dimensions: 1584 x 396 pixels</strong><br>
+            Click "Download as PNG" to save, or "Copy to Clipboard" to paste directly into LinkedIn.
+        </div>
+    </div>
+
+    <script>
+        function downloadAsImage() {
+            const banner = document.getElementById('banner');
+            const canvas = document.getElementById('downloadCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = 1584;
+            canvas.height = 396;
+            
+            // 1. Fill Background
+            const gradient = ctx.createLinearGradient(0, 0, 1584, 396);
+            gradient.addColorStop(0, '#0f172a');
+            gradient.addColorStop(0.5, '#1e293b');
+            gradient.addColorStop(1, '#0f172a');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1584, 396);
+            
+            // 2. Draw Grid
+            ctx.strokeStyle = 'rgba(6, 182, 212, 0.08)';
+            ctx.lineWidth = 1;
+            for(let i = 0; i < 1584; i += 40) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, 396); ctx.stroke();
+            }
+            for(let i = 0; i < 396; i += 40) {
+                ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(1584, i); ctx.stroke();
+            }
+            
+            // 3. Draw Orbs
+            ctx.filter = 'blur(40px)';
+            ctx.globalAlpha = 0.3;
+            const orb1 = ctx.createRadialGradient(-50, -50, 0, -50, -50, 200);
+            orb1.addColorStop(0, '#06b6d4'); orb1.addColorStop(1, 'transparent');
+            ctx.fillStyle = orb1; ctx.fillRect(-100, -100, 400, 400);
+            
+            const orb2 = ctx.createRadialGradient(1450, 350, 0, 1450, 350, 175);
+            orb2.addColorStop(0, '#a855f7'); orb2.addColorStop(1, 'transparent');
+            ctx.fillStyle = orb2; ctx.fillRect(1300, 250, 350, 350);
+            
+            ctx.filter = 'none';
+            ctx.globalAlpha = 1;
+            
+            // 4. DRAW SDLC LOOP ON LEFT (CANVAS IMPLEMENTATION)
+            ctx.save();
+            // Origin of container in CSS is left: 50px, top: 50% (198px).
+            // Container size is 450x300. Center of loop is approx at (50 + 225, 198) = (275, 198)
+            const loopX = 275;
+            const loopY = 198;
+            
+            ctx.translate(50, 48); // Manual adjustment to match CSS positioning relative to canvas origin
+
+            // Draw Infinity Loop using Bezier Curves (Figure 8)
+            // Left Loop center (150, 150) relative to container, Right Loop center (300, 150)
+            // Container Coords used in CSS SVG: M225,150 ... 
+            
+            ctx.strokeStyle = 'rgba(100, 116, 139, 0.4)';
+            ctx.lineWidth = 10;
+            ctx.lineCap = 'round';
+            
+            // Replicating the SVG Path Logic:
+            // M225,150 C225,150 150,150 150,100 C150,50 225,50 225,150
+            // C225,250 300,250 300,200 C300,150 225,150 225,150
+            // ... mirrored for bottom half
+            
+            ctx.beginPath();
+            // Start Center
+            ctx.moveTo(225, 150);
+            // Top Left Loop
+            ctx.bezierCurveTo(225, 150, 150, 150, 150, 100);
+            ctx.bezierCurveTo(150, 50, 225, 50, 225, 150);
+            // Bottom Right Loop
+            ctx.bezierCurveTo(225, 250, 300, 250, 300, 200);
+            ctx.bezierCurveTo(300, 150, 225, 150, 225, 150);
+            // Top Right Loop
+            ctx.bezierCurveTo(225, 150, 300, 150, 300, 100);
+            ctx.bezierCurveTo(300, 50, 225, 50, 225, 150);
+            // Bottom Left Loop
+            ctx.bezierCurveTo(225, 250, 150, 250, 150, 200);
+            ctx.bezierCurveTo(150, 150, 225, 150, 225, 150);
+            ctx.stroke();
+
+            // Draw 8 Icons
+            ctx.font = '20px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            const icons = [
+                {x: 130, y: 60, char: '📋'}, // Plan (Top Left)
+                {x: 85, y: 150, char: '💻'},  // Code (Left Edge)
+                {x: 130, y: 240, char: '🔨'}, // Build (Bottom Left)
+                {x: 225, y: 150, char: '🧪'}, // Test (Center)
+                {x: 320, y: 60, char: '📦'},  // Release (Top Right)
+                {x: 365, y: 150, char: '🚀'}, // Deploy (Right Edge)
+                {x: 320, y: 240, char: '⚙️'}, // Operate (Bottom Right)
+                {x: 225, y: 40, char: '📊'}   // Monitor (Top Center)
+            ];
+
+            icons.forEach(icon => {
+                // Draw circle bg
+                ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+                ctx.beginPath();
+                ctx.arc(icon.x, icon.y, 20, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = 'rgba(6, 182, 212, 0.5)';
+                ctx.stroke();
+                
+                // Draw Icon
+                ctx.fillStyle = 'white';
+                ctx.fillText(icon.char, icon.x, icon.y + 2);
+            });
+            
+            ctx.restore();
+
+            // 5. DRAW CENTER TEXT
+            const centerX = 950;
+            ctx.textAlign = 'center';
+            
+            // Name Badge
+            ctx.fillStyle = 'rgba(6, 182, 212, 0.1)';
+            ctx.strokeStyle = 'rgba(6, 182, 212, 0.3)';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.roundRect(centerX - 90, 85, 180, 26, 13); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#06b6d4';
+            ctx.font = 'bold 11px -apple-system, sans-serif';
+            ctx.fillText('● THABISO MATSABA', centerX, 102);
+            
+            // Title
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 56px -apple-system, sans-serif';
+            ctx.fillText('JUNIOR DEVOPS', centerX, 170);
+            
+            const textGradient = ctx.createLinearGradient(centerX - 150, 0, centerX + 150, 0);
+            textGradient.addColorStop(0, '#06b6d4'); textGradient.addColorStop(1, '#a855f7');
+            ctx.fillStyle = textGradient; 
+            ctx.fillText('ENGINEER', centerX, 230);
+            
+            // Tagline
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '400 18px -apple-system, sans-serif';
+            ctx.fillText('Cloud · CI/CD · Security · IaC', centerX, 270);
+
+            // 6. DRAW BOTTOM BADGES
+            const badgeWidth = 240; const gap = 20; const totalBadgesWidth = (badgeWidth * 3) + (gap * 2); const startX = centerX - (totalBadgesWidth / 2); const badgeY = 300;
+            const badges = [
+                { x: startX, icon: '☁️', label: 'Cloud', value: 'Native', color: '#06b6d4' },
+                { x: startX + badgeWidth + gap, icon: '⚡', label: 'Pipelines', value: 'Automated', color: '#a855f7' },
+                { x: startX + (badgeWidth + gap) * 2, icon: '🛡️', label: 'Security', value: 'First', color: '#ec4899' }
+            ];
+            
+            badges.forEach(badge => {
+                ctx.textAlign = 'left';
+                ctx.fillStyle = 'rgba(15, 23, 42, 0.9)'; ctx.strokeStyle = `${badge.color}60`; ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.roundRect(badge.x, badgeY, badgeWidth, 70, 14); ctx.fill(); ctx.stroke();
+                ctx.font = '28px serif'; ctx.fillText(badge.icon, badge.x + 20, badgeY + 45);
+                ctx.fillStyle = badge.color; ctx.font = 'bold 12px -apple-system, sans-serif'; ctx.fillText(badge.label.toUpperCase(), badge.x + 60, badgeY + 28);
+                ctx.fillStyle = '#ffffff'; ctx.font = '800 20px -apple-system, sans-serif'; ctx.fillText(badge.value, badge.x + 60, badgeY + 50);
+            });
+            
+            // Download
+            const link = document.createElement('a');
+            link.download = 'linkedin-banner-devops-sdlc.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            showSuccess('✅ Banner downloaded successfully!');
+        }
+        
+        async function copyToClipboard() {
+            // Re-run drawing logic for clipboard (duplicate of download for reliability)
+            const canvas = document.getElementById('downloadCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = 1584; canvas.height = 396;
+            
+            const gradient = ctx.createLinearGradient(0, 0, 1584, 396);
+            gradient.addColorStop(0, '#0f172a'); gradient.addColorStop(0.5, '#1e293b'); gradient.addColorStop(1, '#0f172a');
+            ctx.fillStyle = gradient; ctx.fillRect(0, 0, 1584, 396);
+            
+            ctx.strokeStyle = 'rgba(6, 182, 212, 0.08)'; ctx.lineWidth = 1;
+            for(let i = 0; i < 1584; i += 40) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, 396); ctx.stroke(); }
+            for(let i = 0; i < 396; i += 40) { ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(1584, i); ctx.stroke(); }
+            
+            // LEFT: Loop
+            ctx.save();
+            ctx.translate(50, 48);
+            ctx.strokeStyle = 'rgba(100, 116, 139, 0.4)'; ctx.lineWidth = 10; ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(225, 150);
+            ctx.bezierCurveTo(225, 150, 150, 150, 150, 100); ctx.bezierCurveTo(150, 50, 225, 50, 225, 150);
+            ctx.bezierCurveTo(225, 250, 300, 250, 300, 200); ctx.bezierCurveTo(300, 150, 225, 150, 225, 150);
+            ctx.bezierCurveTo(225, 150, 300, 150, 300, 100); ctx.bezierCurveTo(300, 50, 225, 50, 225, 150);
+            ctx.bezierCurveTo(225, 250, 150, 250, 150, 200); ctx.bezierCurveTo(150, 150, 225, 150, 225, 150);
+            ctx.stroke();
+
+            ctx.font = '20px serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            const icons = [
+                {x: 130, y: 60, char: '📋'}, {x: 85, y: 150, char: '💻'}, {x: 130, y: 240, char: '🔨'},
+                {x: 225, y: 150, char: '🧪'}, {x: 320, y: 60, char: '📦'}, {x: 365, y: 150, char: '🚀'},
+                {x: 320, y: 240, char: '⚙️'}, {x: 225, y: 40, char: '📊'}
+            ];
+            icons.forEach(icon => {
+                ctx.fillStyle = 'rgba(15, 23, 42, 0.9)'; ctx.beginPath(); ctx.arc(icon.x, icon.y, 20, 0, Math.PI * 2); ctx.fill();
+                ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(6, 182, 212, 0.5)'; ctx.stroke();
+                ctx.fillStyle = 'white'; ctx.fillText(icon.char, icon.x, icon.y + 2);
+            });
+            ctx.restore();
+
+            // CENTER Text
+            const centerX = 950;
+            ctx.textAlign = 'center';
+            ctx.fillStyle = 'rgba(6, 182, 212, 0.1)'; ctx.strokeStyle = 'rgba(6, 182, 212, 0.3)'; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.roundRect(centerX - 90, 85, 180, 26, 13); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#06b6d4'; ctx.font = 'bold 11px -apple-system, sans-serif'; ctx.fillText('● THABISO MATSABA', centerX, 102);
+            ctx.fillStyle = '#ffffff'; ctx.font = '900 56px -apple-system, sans-serif'; ctx.fillText('JUNIOR DEVOPS', centerX, 170);
+            const textGradient = ctx.createLinearGradient(centerX - 150, 0, centerX + 150, 0);
+            textGradient.addColorStop(0, '#06b6d4'); textGradient.addColorStop(1, '#a855f7');
+            ctx.fillStyle = textGradient; ctx.fillText('ENGINEER', centerX, 230);
+            ctx.fillStyle = '#94a3b8'; ctx.font = '400 18px -apple-system, sans-serif'; ctx.fillText('Cloud · CI/CD · Security · IaC', centerX, 270);
+
+            // BOTTOM Badges
+            const badgeWidth = 240; const gap = 20; const totalBadgesWidth = (badgeWidth * 3) + (gap * 2); const startX = centerX - (totalBadgesWidth / 2); const badgeY = 300;
+            const badges = [
+                { x: startX, icon: '☁️', label: 'Cloud', value: 'Native', color: '#06b6d4' },
+                { x: startX + badgeWidth + gap, icon: '⚡', label: 'Pipelines', value: 'Automated', color: '#a855f7' },
+                { x: startX + (badgeWidth + gap) * 2, icon: '🛡️', label: 'Security', value: 'First', color: '#ec4899' }
+            ];
+            badges.forEach(badge => {
+                ctx.textAlign = 'left';
+                ctx.fillStyle = 'rgba(15, 23, 42, 0.9)'; ctx.strokeStyle = `${badge.color}60`; ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.roundRect(badge.x, badgeY, badgeWidth, 70, 14); ctx.fill(); ctx.stroke();
+                ctx.font = '28px serif'; ctx.fillText(badge.icon, badge.x + 20, badgeY + 45);
+                ctx.fillStyle = badge.color; ctx.font = 'bold 12px -apple-system, sans-serif'; ctx.fillText(badge.label.toUpperCase(), badge.x + 60, badgeY + 28);
+                ctx.fillStyle = '#ffffff'; ctx.font = '800 20px -apple-system, sans-serif'; ctx.fillText(badge.value, badge.x + 60, badgeY + 50);
+            });
+            
+            try {
+                canvas.toBlob(async (blob) => {
+                    await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+                    showSuccess('✅ Copied to clipboard!');
+                });
+            } catch (err) {
+                showSuccess('❌ Clipboard not supported.');
+            }
+        }
+        
+        function showSuccess(message) {
+            const msg = document.getElementById('successMessage');
+            msg.textContent = message;
+            msg.style.display = 'block';
+            setTimeout(() => { msg.style.display = 'none'; }, 4000);
+        }
+    </script>
+</body>
+</html>

@@ -220,112 +220,112 @@ const portfolioData = {
     },
   ],
 
-projects: [
-  {
-    title: "Cloud Explorer - Mobile Learning App",
-    description:
-      "Cross-platform mobile application that gamifies cloud computing education through interactive modules, quizzes, and certification preparation for GCP, AWS, and Azure.",
-    imageUrl: cloudExplorerImg,
-    tags: [
-      "React Native",
-      "GCP",
-      "Kubernetes",
-      "Terraform",
-      "Docker",
-      "Firebase",
-      "Gemini API",
-      "Cloud Build",
-      "Node.js",
-      "Redux"
-    ],
-    detailedTech: [
-      "React Native", "Node.js", "Express.js", "Redux", 
-      "Firebase Auth", "Firestore", "GCE", "Cloud Storage",
-      "Cloud Run", "Cloud Build", "Gemini API", "TensorFlow"
-    ],
-    keyFeatures: [
-      "Interactive learning modules for GCP, AWS, and Azure certification paths",
-      "AI-powered quizzes and exams using Gemini API integration",
-      "Real-time progress tracking with Firebase Firestore",
-      "Containerized microservices backend on Google Cloud Run",
-      "Automated CI/CD pipeline with Google Cloud Build",
-      "Scalable architecture with auto-scaling on GCE"
-    ],
-    architecture: "Microservices architecture with React Native frontend, Node.js/Express backend deployed on Cloud Run, Firebase for authentication and real-time database, and AI integration via Gemini API for intelligent content generation.",
-    deployment: "Deployed on GCP: Cloud Run + Firestore + Cloud Build CI/CD",
-    githubUrl: "https://github.com/Shaun-Trigga96/CloudExplorer",
-    demoUrl: "",
-  },
-  {
-    title: "PharmacyApp - Healthcare Management Solution",
-    description:
-      "Enterprise-grade full-stack pharmacy management system streamlining operations from inventory control to prescription management, deployed on AWS with Docker containerization.",
-    imageUrl: pharmacyAppImg,
-    tags: [
-      "Docker",
-      "AWS EC2",
-      "CI/CD",
-      "Nginx",
-      "Spring Boot",
-      "Angular",
-      "MySQL",
-      "TypeScript",
-      "Bootstrap"
-    ],
-    detailedTech: [
-      "Java 19", "Spring Boot", "Spring JDBC", "MySQL", 
-      "Angular", "TypeScript", "Bootstrap", "Docker", 
-      "AWS EC2", "Nginx", "Lombok"
-    ],
-    keyFeatures: [
-      "Multi-role user management (User, Manager, Admin, SysAdmin)",
-      "Two-factor authentication with email verification tokens",
-      "Comprehensive inventory management with real-time tracking",
-      "Prescription management system with medication association",
-      "Invoice generation and customer purchase tracking",
-      "Secure password recovery with verification links",
-      "Dockerized deployment for consistent environments"
-    ],
-    architecture: "Full-stack monolithic application with Spring Boot RESTful backend, Angular SPA frontend, MySQL database, containerized with Docker and deployed on AWS EC2 with Nginx reverse proxy for load balancing.",
-    deployment: "AWS EC2 with Docker containers + Nginx load balancer",
-    githubUrl: "https://github.com/220296006/PharmacyApp",
-    demoUrl: "",
-  },
-  {
-    title: "VP Bank App - Secure Banking Platform",
-    description:
-      "Desktop banking application featuring JWT-based authentication, comprehensive account management, investment calculators, and secure SMTP-based password recovery system.",
-    imageUrl: Fast_MoneyImg,
-    tags: [
-      "Python",
-      "Flask",
-      "SQLAlchemy",
-      "JWT",
-      "Tkinter",
-      "SMTP",
-      "Authentication",
-      "SQL"
-    ],
-    detailedTech: [
-      "Python 3", "Flask", "SQLAlchemy", "JWT", 
-      "Tkinter", "SMTP", "SQL", "Encryption"
-    ],
-    keyFeatures: [
-      "Secure user registration and JWT-based authentication",
-      "Real-time account balance viewing and transaction history",
-      "Deposit and withdrawal transaction processing",
-      "Investment calculators (bond/home loan calculations)",
-      "Detailed transaction statement generation",
-      "SMTP-based password recovery via email",
-      "Encrypted password storage for enhanced security",
-      "Custom-styled Tkinter GUI for intuitive user experience"
-    ],
-    architecture: "Desktop application built with Flask backend, SQLAlchemy ORM for database management, JWT tokens for stateless authentication, and Tkinter for cross-platform GUI with custom styling.",
-    deployment: "Standalone desktop application (Windows/Mac/Linux compatible)",
-    githubUrl: "https://github.com/220296006/banking-app-py-master",
-    demoUrl: "",
-  },
-],
+  projects: [
+    {
+      title: "Cloud Explorer - Mobile Learning App",
+      description:
+        "Cross-platform mobile application that gamifies cloud computing education through interactive modules, quizzes, and certification preparation for GCP, AWS, and Azure.",
+      imageUrl: cloudExplorerImg,
+      tags: [
+        "React Native",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "Firebase",
+        "Gemini API",
+        "Cloud Build",
+        "Node.js",
+        "Redux"
+      ],
+      detailedTech: [
+        "React Native", "Node.js", "Express.js", "Redux",
+        "Firebase Auth", "Firestore", "GCE", "Cloud Storage",
+        "Cloud Run", "Cloud Build", "Gemini API", "TensorFlow"
+      ],
+      keyFeatures: [
+        "Interactive learning modules for GCP, AWS, and Azure certification paths",
+        "AI-powered quizzes and exams using Gemini API integration",
+        "Real-time progress tracking with Firebase Firestore",
+        "Containerized microservices backend on Google Cloud Run",
+        "Automated CI/CD pipeline with Google Cloud Build",
+        "Scalable architecture with auto-scaling on GCE"
+      ],
+      architecture: "Microservices architecture with React Native frontend, Node.js/Express backend deployed on Cloud Run, Firebase for authentication and real-time database, and AI integration via Gemini API for intelligent content generation.",
+      deployment: "Deployed on GCP: Cloud Run + Firestore + Cloud Build CI/CD",
+      githubUrl: "https://github.com/Shaun-Trigga96/CloudExplorer",
+      demoUrl: "",
+    },
+    {
+      title: "PharmacyApp - Healthcare Management Solution",
+      description:
+        "Enterprise-grade full-stack pharmacy management system streamlining operations from inventory control to prescription management, deployed on AWS with Docker containerization.",
+      imageUrl: pharmacyAppImg,
+      tags: [
+        "Docker",
+        "AWS EC2",
+        "CI/CD",
+        "Nginx",
+        "Spring Boot",
+        "Angular",
+        "MySQL",
+        "TypeScript",
+        "Bootstrap"
+      ],
+      detailedTech: [
+        "Java 19", "Spring Boot", "Spring JDBC", "MySQL",
+        "Angular", "TypeScript", "Bootstrap", "Docker",
+        "AWS EC2", "Nginx", "Lombok"
+      ],
+      keyFeatures: [
+        "Multi-role user management (User, Manager, Admin, SysAdmin)",
+        "Two-factor authentication with email verification tokens",
+        "Comprehensive inventory management with real-time tracking",
+        "Prescription management system with medication association",
+        "Invoice generation and customer purchase tracking",
+        "Secure password recovery with verification links",
+        "Dockerized deployment for consistent environments"
+      ],
+      architecture: "Full-stack monolithic application with Spring Boot RESTful backend, Angular SPA frontend, MySQL database, containerized with Docker and deployed on AWS EC2 with Nginx reverse proxy for load balancing.",
+      deployment: "AWS EC2 with Docker containers + Nginx load balancer",
+      githubUrl: "https://github.com/220296006/PharmacyApp",
+      demoUrl: "",
+    },
+    {
+      title: "VP Bank App - Secure Banking Platform",
+      description:
+        "Desktop banking application featuring JWT-based authentication, comprehensive account management, investment calculators, and secure SMTP-based password recovery system.",
+      imageUrl: Fast_MoneyImg,
+      tags: [
+        "Python",
+        "Flask",
+        "SQLAlchemy",
+        "JWT",
+        "Tkinter",
+        "SMTP",
+        "Authentication",
+        "SQL"
+      ],
+      detailedTech: [
+        "Python 3", "Flask", "SQLAlchemy", "JWT",
+        "Tkinter", "SMTP", "SQL", "Encryption"
+      ],
+      keyFeatures: [
+        "Secure user registration and JWT-based authentication",
+        "Real-time account balance viewing and transaction history",
+        "Deposit and withdrawal transaction processing",
+        "Investment calculators (bond/home loan calculations)",
+        "Detailed transaction statement generation",
+        "SMTP-based password recovery via email",
+        "Encrypted password storage for enhanced security",
+        "Custom-styled Tkinter GUI for intuitive user experience"
+      ],
+      architecture: "Desktop application built with Flask backend, SQLAlchemy ORM for database management, JWT tokens for stateless authentication, and Tkinter for cross-platform GUI with custom styling.",
+      deployment: "Standalone desktop application (Windows/Mac/Linux compatible)",
+      githubUrl: "https://github.com/220296006/banking-app-py-master",
+      demoUrl: "",
+    },
+  ],
   experience: [
     {
       role: "Google Cloud Infrastructure Intern - C2 Operations",
@@ -445,27 +445,24 @@ const Header = ({ navLinks, themeHook, activeSection }) => {
     >
       {/* Active / Hover Background Glow */}
       <span
-        className={`absolute inset-0 rounded-lg bg-cyan-500/5 dark:bg-cyan-500/10 transition-transform duration-300 ease-out ${
-          isActive
+        className={`absolute inset-0 rounded-lg bg-cyan-500/5 dark:bg-cyan-500/10 transition-transform duration-300 ease-out ${isActive
             ? "scale-100 opacity-100"
             : "scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100"
-        }`}
+          }`}
       ></span>
 
       {/* Text with Brackets Effect */}
       <span
         className={`relative font-mono text-sm font-medium tracking-wide transition-colors duration-300 flex items-center gap-1 
-        ${
-          isActive
+        ${isActive
             ? "text-cyan-600 dark:text-cyan-400"
             : "text-gray-600 dark:text-gray-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400"
-        }`}
+          }`}
       >
         {/* Opening Bracket (Hidden by default, slides in on hover/active) */}
         <span
-          className={`opacity-0 -translate-x-2 transition-all duration-300 ${
-            isActive || "group-hover:opacity-100 group-hover:translate-x-0"
-          }`}
+          className={`opacity-0 -translate-x-2 transition-all duration-300 ${isActive || "group-hover:opacity-100 group-hover:translate-x-0"
+            }`}
         >
           [
         </span>
@@ -474,9 +471,8 @@ const Header = ({ navLinks, themeHook, activeSection }) => {
 
         {/* Closing Bracket */}
         <span
-          className={`opacity-0 translate-x-2 transition-all duration-300 ${
-            isActive || "group-hover:opacity-100 group-hover:translate-x-0"
-          }`}
+          className={`opacity-0 translate-x-2 transition-all duration-300 ${isActive || "group-hover:opacity-100 group-hover:translate-x-0"
+            }`}
         >
           ]
         </span>
@@ -491,11 +487,10 @@ const Header = ({ navLinks, themeHook, activeSection }) => {
 
   return (
     <nav
-      className={`fixed w-full z-50 top-0 transition-all duration-500 border-b ${
-        scrolled
+      className={`fixed w-full z-50 top-0 transition-all duration-500 border-b ${scrolled
           ? "bg-white/80 dark:bg-gray-900/90 backdrop-blur-xl border-gray-200 dark:border-gray-800 py-2 shadow-lg shadow-cyan-500/5"
           : "bg-transparent border-transparent py-4"
-      }`}
+        }`}
     >
       {/* Reading Progress Bar */}
       <div
@@ -565,11 +560,10 @@ const Header = ({ navLinks, themeHook, activeSection }) => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`md:hidden fixed inset-0 z-40 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl transition-all duration-500 ease-in-out ${
-          isMobileMenuOpen
+        className={`md:hidden fixed inset-0 z-40 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl transition-all duration-500 ease-in-out ${isMobileMenuOpen
             ? "opacity-100 translate-x-0"
             : "opacity-0 translate-x-full pointer-events-none"
-        }`}
+          }`}
         style={{ top: "60px" }} // Offset for header height
       >
         <div className="px-6 py-8 space-y-2">
@@ -583,29 +577,26 @@ const Header = ({ navLinks, themeHook, activeSection }) => {
               key={link.id}
               href={`#${link.id}`}
               onClick={(e) => handleLinkClick(e, `#${link.id}`)}
-              className={`flex items-center justify-between p-4 rounded-xl text-lg font-medium transition-all duration-300 ${
-                activeSection === link.id
+              className={`flex items-center justify-between p-4 rounded-xl text-lg font-medium transition-all duration-300 ${activeSection === link.id
                   ? "bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 translate-x-2"
                   : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:translate-x-2"
-              }`}
+                }`}
               style={{ transitionDelay: `${index * 50}ms` }}
             >
               <span className="flex items-center gap-3">
                 <span
-                  className={`text-xs font-mono ${
-                    activeSection === link.id
+                  className={`text-xs font-mono ${activeSection === link.id
                       ? "text-cyan-500"
                       : "text-gray-400"
-                  }`}
+                    }`}
                 >
                   0{index + 1}.
                 </span>
                 {link.title}
               </span>
               <ChevronRight
-                className={`w-5 h-5 ${
-                  activeSection === link.id ? "opacity-100" : "opacity-0"
-                }`}
+                className={`w-5 h-5 ${activeSection === link.id ? "opacity-100" : "opacity-0"
+                  }`}
               />
             </a>
           ))}
@@ -958,10 +949,10 @@ const About = () => {
 
           {/* RIGHT: NEON INFINITY LOOP VISUAL */}
           <div className="relative flex justify-center items-center animate-on-scroll opacity-0 translate-x-[30px] transition-all duration-700 delay-200">
-            <div className="relative w-full max-w-lg aspect-square">
+            <div className="relative w-full max-w-2xl aspect-square">
               {/* The Glowing SVG Circuit */}
               <svg
-                viewBox="0 0 430 300"
+                viewBox="0 0 500 300"
                 className="w-full h-full drop-shadow-2xl dark:drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]"
               >
                 <defs>
@@ -987,7 +978,7 @@ const About = () => {
 
                 {/* Background Track (Adaptive color) */}
                 <path
-                  d="M215,150 m-140,0 a70,70 0 1,0 140,0 a70,70 0 1,0 -140,0 M215,150 m0,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"
+                  d="M250,150 m-140,0 a70,70 0 1,0 140,0 a70,70 0 1,0 -140,0 M250,150 m0,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"
                   fill="none"
                   className="stroke-gray-200 dark:stroke-gray-800 transition-colors duration-500"
                   strokeWidth="12"
@@ -997,7 +988,7 @@ const About = () => {
                 {/* Active Path (Animated) */}
                 <path
                   id="infinityPath"
-                  d="M215,150 C215,150 145,150 145,80 C145,10 215,10 215,150 C215,290 285,290 285,220 C285,150 215,150 215,150 C215,150 145,150 145,220 C145,290 215,290 215,150 C215,10 285,10 285,80 C285,150 215,150 215,150"
+                  d="M250,150 C250,150 180,150 180,80 C180,10 250,10 250,150 C250,290 320,290 320,220 C320,150 250,150 250,150 C250,150 180,150 180,220 C180,290 250,290 250,150 C250,10 320,10 320,80 C320,150 250,150 250,150"
                   fill="none"
                   stroke="url(#neonGradient)"
                   strokeWidth="3"
@@ -1011,7 +1002,7 @@ const About = () => {
                   <animateMotion
                     dur="4s"
                     repeatCount="indefinite"
-                    path="M215,150 C215,150 145,150 145,80 C145,10 215,10 215,150 C215,290 285,290 285,220 C285,150 215,150 215,150 C215,150 145,150 145,220 C145,290 215,290 215,150 C215,10 285,10 285,80 C285,150 215,150 215,150"
+                    path="M250,150 C250,150 180,150 180,80 C180,10 250,10 250,150 C250,290 320,290 320,220 C320,150 250,150 250,150 C250,150 180,150 180,220 C180,290 250,290 250,150 C250,10 320,10 320,80 C320,150 250,150 250,150"
                   />
                 </circle>
               </svg>
@@ -1020,20 +1011,20 @@ const About = () => {
               {steps.map((step, index) => {
                 const Icon = step.icon;
                 const positions = [
-                  { top: "15%", left: "25%" },
-                  { top: "50%", left: "5%" },
-                  { bottom: "15%", left: "25%" },
+                  { top: "15%", left: "30%" },
+                  { top: "50%", left: "8%" },
+                  { bottom: "15%", left: "30%" },
                   { bottom: "50%", left: "50%" },
-                  { bottom: "15%", right: "25%" },
-                  { top: "50%", right: "5%" },
-                  { top: "15%", right: "25%" },
+                  { bottom: "15%", right: "30%" },
+                  { top: "50%", right: "8%" },
+                  { top: "15%", right: "30%" },
                 ];
                 const pos = positions[index] || { top: "50%", left: "50%" };
 
                 return (
                   <div
                     key={step.id}
-                    className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
+                    className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-20"
                     style={{ ...pos }}
                   >
                     <div className="relative">
@@ -1041,26 +1032,21 @@ const About = () => {
                       <div className="absolute inset-0 bg-cyan-500 rounded-full blur opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
 
                       {/* Icon Circle */}
-                      <div className="relative flex items-center justify-center w-12 h-12 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-full shadow-xl group-hover:scale-110 group-hover:border-cyan-500 transition-all duration-300 z-10">
+                      <div className="relative flex items-center justify-center w-14 h-14 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-full shadow-xl group-hover:scale-110 group-hover:border-cyan-500 transition-all duration-300 z-10">
                         <Icon
-                          className="w-5 h-5 transition-colors duration-300"
+                          className="w-6 h-6 transition-colors duration-300"
                           style={{ color: step.color }}
                         />
                       </div>
 
                       {/* Tooltip */}
-                      <div className="absolute top-14 left-1/2 -translate-x-1/2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-[10px] font-bold py-1 px-2 rounded border border-gray-200 dark:border-gray-700 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 tracking-widest pointer-events-none whitespace-nowrap">
+                      <div className="absolute top-16 left-1/2 -translate-x-1/2 bg-gray-900 dark:bg-gray-800 text-white text-xs font-bold py-2 px-3 rounded-md border border-gray-700 dark:border-gray-600 shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 tracking-widest pointer-events-none whitespace-nowrap z-[100]">
                         {step.label}
                       </div>
                     </div>
                   </div>
                 );
               })}
-
-              {/* Central Core */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-full border border-gray-200 dark:border-gray-600 flex items-center justify-center z-0 shadow-lg dark:shadow-[0_0_30px_rgba(34,211,238,0.1)] animate-pulse-slow">
-                <RefreshCw className="w-8 h-8 text-gray-400 dark:text-white/50 animate-spin-slow" />
-              </div>
             </div>
           </div>
         </div>
@@ -1376,14 +1362,14 @@ const Certifications = () => {
 
 // 1. Internal helper for the Github Icon
 const ProjectGithubIcon = ({ className }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={className}
   >
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
@@ -1404,7 +1390,7 @@ const ProjectCard = ({ project, index }) => {
     >
       {/* Card Container */}
       <div className="relative flex-grow bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden shadow-sm dark:shadow-none hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 group-hover:-translate-y-2 flex flex-col">
-        
+
         {/* Image Section */}
         <div className="relative h-64 flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700">
           <img
@@ -1416,11 +1402,10 @@ const ProjectCard = ({ project, index }) => {
               e.target.src = "https://placehold.co/600x400/1e293b/cbd5e1?text=System+Image";
             }}
           />
-          
+
           {/* --- HOVER OVERLAY (The HUD) --- */}
-          <div className={`absolute inset-0 bg-gray-900/95 backdrop-blur-sm transition-all duration-300 ease-in-out flex flex-col ${
-            isHovered ? 'opacity-100 visible' : 'opacity-0 invisible'
-          }`}>
+          <div className={`absolute inset-0 bg-gray-900/95 backdrop-blur-sm transition-all duration-300 ease-in-out flex flex-col ${isHovered ? 'opacity-100 visible' : 'opacity-0 invisible'
+            }`}>
             <div className="h-full p-5 overflow-y-auto custom-scrollbar">
               {/* Overlay Header */}
               <div className="mb-4 pb-2 border-b border-gray-700 flex justify-between items-center">
@@ -1459,16 +1444,16 @@ const ProjectCard = ({ project, index }) => {
               {/* 3. Architecture/Deployment */}
               {project.architecture && (
                 <div className="mt-auto pt-2">
-                   <h5 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Architecture</h5>
-                   <p className="text-xs text-gray-300 font-mono">{project.architecture}</p>
+                  <h5 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Architecture</h5>
+                  <p className="text-xs text-gray-300 font-mono">{project.architecture}</p>
                 </div>
               )}
             </div>
-            
+
             {/* Bottom Gradient Fade for scroll indication */}
             <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none"></div>
           </div>
-          
+
           {/* Active Badge (Visible when NOT hovered) */}
           <div className={`absolute top-4 right-4 px-3 py-1 bg-gray-900/80 backdrop-blur-md border border-gray-700 rounded-full text-xs font-bold text-cyan-400 flex items-center gap-2 z-10 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
@@ -1638,11 +1623,10 @@ const Experience = () => {
 
               {/* Date Badge (Desktop: Opposite side of card) */}
               <div
-                className={`md:w-1/2 mb-4 md:mb-0 ${
-                  index % 2 === 0
+                className={`md:w-1/2 mb-4 md:mb-0 ${index % 2 === 0
                     ? "md:text-right md:pr-16 order-1"
                     : "md:text-left md:pl-16 order-3"
-                } pl-20 md:pl-0 w-full`}
+                  } pl-20 md:pl-0 w-full`}
               >
                 <div
                   className={`inline-flex items-center gap-2 px-3 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-xs font-mono font-semibold`}
@@ -1660,9 +1644,8 @@ const Experience = () => {
 
               {/* The Card */}
               <div
-                className={`md:w-1/2 w-full pl-20 md:pl-0 ${
-                  index % 2 === 0 ? "md:pl-16 order-3" : "md:pr-16 order-1"
-                }`}
+                className={`md:w-1/2 w-full pl-20 md:pl-0 ${index % 2 === 0 ? "md:pl-16 order-3" : "md:pr-16 order-1"
+                  }`}
               >
                 <div className="group relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/20 transition-all duration-500 hover:-translate-y-1">
                   {/* Decorative corner accents */}
